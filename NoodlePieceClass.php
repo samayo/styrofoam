@@ -157,25 +157,3 @@ class NoodlePiece{
 
 
 
-
-
-
-/*********************************************************************************************************
- * this is an example how to do basic crud 
-******************************************************************************************************** */
- 
- 
-    require_once 'OneNoodle.php';
-
-    $obj = new OneNoodle($db);
-
-    $select = $obj->doLazy('SELECT * FROM questions')->where('id = ?', [1]);
-
-    $insert = $obj->doLazy('INSERT INTO questions (name, job)') ->values('(?,?)', ['simon', 'developer'], true);
-    // true means return lastInsertId if query was successful. 
-				  				
-    $update = $obj->doLazy('UPDATE questions')->set('choice_1 = ? WHERE id = ?', ['orange', 1]);
-
-    $delete = $obj->doLazy('DELETE FROM questions')->where('id = ?', [6]);
-
-// result will return true, on success or false on failure. 
