@@ -1,0 +1,181 @@
+<?php
+
+/**
+ * NoodlePiece is tiny PDO Wrapper Class, to handle simple PDO-based
+ * CRUD statements with one or two lines of coding.
+ *
+ * PHP 5 >= 5.1.0, PECL pdo >= 0.1.0
+ * @author     Simon _eQ <https://github.com/simon-eQ>
+ * @copyright  Copyright (c) 2013 Simon _eQ
+ * @license    free as in a free hug
+ * @version    1.0.0
+ *
+ */
+
+
+
+class NoodlePiece{
+
+
+    /**
+     * @var
+     * get statement type or CRUD type
+     */
+    private $statement;
+
+
+    /**
+     * @var
+     * check for errors
+     */
+    private $classError = array();
+
+
+    /**
+     * @param $db
+     * Inject the PDO connection resource
+     */
+    public function __construct($db)
+    {
+        $this->db = $db;
+    }
+
+
+    /**
+     * get query (CRUD) type and allow access of method
+     *
+     * @param $queryType - get query type
+     * @return $this - enables access of methods as method()->method2();
+     *
+     */
+    public function doLazy($queryType)
+    {
+        $this->statement = func_get_args()[0];
+        return $this;
+    }
+
+
+    /**
+     * Captures the 'WHERE..' statement for both UPDATE & DELETE
+     *
+     * @param $taskDirective - ex: where id = ?
+     * @param $valuesToExecute - values that go through execute() method
+     * @return bool|string  - if Query fails, pass reason to error
+     *
+     */
+    public function where($taskDirective, $valuesToExecute)
+    {
+
+        try{
+            $stmt = $this->db->prepare($this->statement. ' WHERE '.$taskDirective);
+            $stmt->execute($valuesToExecute);
+        }catch (PDOException $e){
+            return $this->classError = $e->getMessage();
+        }
+  	
+        if(strpos($this->statement, 'DELETE') !== false){
+            return (!$stmt->rowCount()) ? $this->classError = 'Query Failed at line '. __LINE__ : true;
+        }
+
+        return ($stmt->rowCount()) ? $stmt->fetchAll(PDO::FETCH_ASSOC) : $this->classError = 'Failed Query at line '. __LINE__ ;
+
+    }
+
+
+    /**
+     * capture values for the 'SET' part of an Update statement.
+     *
+     * @param $rowsToAffect - this mentioned which rows to update
+     * @param $valuesToUpdate - this is an array to execute
+     * @return bool|string - error, or bool.
+     *
+     */
+    public function set($rowsToAffect, $valuesToUpdate)
+    {
+
+        try{
+            $stmt = $this->db->prepare($this->statement. ' SET ' .$rowsToAffect);
+            $stmt->execute($valuesToUpdate);
+        }catch(PDOException $e){
+            return $this->classError = 'Update Failed: '.$e->getMessage();
+        }
+
+        return ($stmt->rowCount()) ? true : $this->classError = 'Query failed at line '. __LINE__;
+    }
+
+
+
+    /**
+     * this handles VALUES(...) for the INSERT Method/
+     *
+     * @param $indetifyRows - for named or ? placeholders
+     * @param $valuesToExecute - array to execute
+     * @param $requestLastInsertId - if true, after insert retun lastInsertId
+     * @return string
+     *
+     */
+    public function values($indetifyRows, $valuesToExecute, $requestLastInsertId)
+    {
+
+        try{
+            $stmt = $this->db->prepare($this->statement.' VALUES '.$indetifyRows);
+            $stmt->execute($valuesToExecute);
+        }catch (PDOException $e){
+            return $this->classError = 'Insert Query Failed '.$e->getMessage();
+        }
+
+        if($stmt->rowCount() && $requestLastInsertId === true){
+            return $this->db->lastInsertId();
+        }
+
+        return $this->classError = 'Query failed at line '. __LINE__;
+    }
+
+
+
+    /**
+     * Check for possible errors
+     * @return array|string
+     *
+     */
+    public function errorChecking()
+    {
+
+        if($this->classError){
+            return $this->classError;
+        }
+
+        return 'No errors Found';
+
+    }
+
+
+
+
+}
+
+
+
+
+
+
+
+/*********************************************************************************************************
+ * this is an example how to do basic crud 
+******************************************************************************************************** */
+ 
+ 
+    require_once 'OneNoodle.php';
+
+    $obj = new OneNoodle($db);
+
+    $select = $obj->doLazy('SELECT * FROM questions')->where('id = ?', [1]);
+
+    $insert = $obj->doLazy('INSERT INTO questions (name, job)') ->values('(?,?)', ['simon', 'developer'], true);
+    // true means return lastInsertId if query was successful. 
+				  				
+    $update = $obj->doLazy('UPDATE questions')->set('choice_1 = ? WHERE id = ?', ['orange', 1]);
+
+    $delete = $obj->doLazy('DELETE FROM questions')->where('id = ?', [6]);
+
+// result will return true, on success or false on failure. 
