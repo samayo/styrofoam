@@ -1,4 +1,3 @@
-
 ![Y U CODE LIKE THIS](http://i.imm.io/1hvBM.jpeg)
 
 ##NoodlePiece
@@ -6,10 +5,10 @@
 
 ##### vat ze hel iz zis ? 
 
-If you are too noob, or too lazy to write those blocks PDO statements for each and simple
-PDO-based CRUD applications on the fly as you code, then NoodlePiece is your noodle and your best friend. 
+If you are too noob, or too lazy to write those blocks of PDO statements for each and simple
+PDO-based query, then NoodlePiece is your noodle and your best friend. 
 
-Let's take this as example
+Let's take this as example, given you want do a SELECT query to return user from your table by id is $_POST['id']
 
       
       try{
