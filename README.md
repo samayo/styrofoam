@@ -8,7 +8,7 @@
 If you are too noob, or too lazy to write those blocks of PDO statements for each and every one of your
 CRUD applications, then NoodlePiece is your noodle and your best friend. 
 
-Let's take this as example, given you want do a SELECT query to return user from your table by id is $_POST['id']
+I will asume you will write this much, to do a simple SELECT query based on a given parameter. 
 
       
       try{
