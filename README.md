@@ -27,7 +27,7 @@ I will asume you will write this much, to do a simple SELECT query based on a gi
 
 Well,  with NoodlePiece, all you have to do to get the same result is... 
 
-      $select = $NoodlePiece->doLazy->('SELECT * FROM users')->where('id = ?', $_POST['id']); 
+      $select = $NoodlePiece->doLazy('SELECT * FROM users')->where('id = ?', $_POST['id']); 
 
 that is it. And now, `$select` holds the required data.
 
