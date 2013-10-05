@@ -29,7 +29,7 @@ Well,  with NoodlePiece, all you have to do to get the same result is...
 
       $select = $NoodlePiece->doLazy->('SELECT * FROM users')->where('id = ?', $_POST['id']); 
 
-that is it. And now, `$result` holds the required data.
+that is it. And now, `$select` holds the required data.
 
 
 
