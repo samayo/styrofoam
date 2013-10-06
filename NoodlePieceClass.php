@@ -14,26 +14,26 @@
 
 
 
-class NoodlePiece{
+class NoodlePiece {
 
 
     /**
+     * Get statement type or CRUD type
      * @var
-     * get statement type or CRUD type
      */
     private $statement;
 
 
     /**
+     * Check for errors
      * @var
-     * check for errors
      */
     private $classError = array();
 
 
     /**
-     * @param $db
      * Inject the PDO connection resource
+     * @param $db
      */
     public function __construct($db)
     {
@@ -42,7 +42,7 @@ class NoodlePiece{
 
 
     /**
-     * get query (CRUD) type and allow access of method
+     * Get query (CRUD) type and allow access of method
      *
      * @param $queryType - get query type
      * @return $this - enables access of methods as method()->method2();
@@ -83,7 +83,7 @@ class NoodlePiece{
 
 
     /**
-     * capture values for the 'SET' part of an Update statement.
+     * Capture values for the 'SET' part of an Update statement.
      *
      * @param $rowsToAffect - this mentioned which rows to update
      * @param $valuesToUpdate - this is an array to execute
@@ -106,7 +106,7 @@ class NoodlePiece{
 
 
     /**
-     * this handles VALUES(...) for the INSERT Method/
+     * This handles VALUES(...) for the INSERT Method/
      *
      * @param $indetifyRows - for named or ? placeholders
      * @param $valuesToExecute - array to execute
