@@ -5,7 +5,7 @@
    * This demonstrates how to do a simple and basic CRUD with NoodlePiece
    * First connect to your database
    */
-  $db = new PDO('mysql:host=localhost; dbname=eritrean_lib', 'root', '');  // This is just an example
+  $db = new PDO('mysql:host=localhost; dbname=test', 'root', '');  // This is just an example
 	
   /*
    * Include the NoodlePiece class
