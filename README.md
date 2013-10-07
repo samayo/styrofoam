@@ -22,21 +22,22 @@ each time you do a simple `SELECT` statement.
       
 
 Well,  with PdoNoodle, all you have to do to get the same result is... 
+#### Select
 
 `$select = $NoodlePiece->doLazy('SELECT * FROM users')->where('id = ?', $_POST['id']);`
 
 that is it. And now, `$select` holds the required data.
 
 =============
-##### UPDATE 
+##### Update 
 
 `$update = $NoodlePiece->doLazy('UPDATE car_type')->set('jaguar = ? WHERE id = ?', ['ferrari', 1]);`
 
-##### DELETE 
+##### Delete 
 
 `$delete = $NoodlePiece->doLazy('DELETE FROM clients')->where('id = ?', array('371'));`
 
-##### INSERT
+##### Insert
 
          $insert = $NoodlePiece->doLazy('INSERT INTO employees (name, job)')
                                ->values('(?,?)', ['simon', 'developer'], true);
