@@ -38,7 +38,8 @@ that is it. And now, `$select` holds the required data.
 
 ##### INSERT
 
-`$insert = $NoodlePiece->doLazy('INSERT INTO employees (name, job)') ->values('(?,?)', ['simon', 'developer'], true);`
+         $insert = $NoodlePiece->doLazy('INSERT INTO employees (name, job)')
+                               ->values('(?,?)', ['simon', 'developer'], true);
 
 
 
