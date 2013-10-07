@@ -1,7 +1,7 @@
 <?php
 
 /**
- * NoodlePiece is tiny PDO Wrapper Class, to handle simple PDO-based
+ * PdoNoodle is tiny PDO Wrapper Class, to handle simple PDO-based
  * CRUD statements with one or two lines of coding.
  *
  * PHP 5 >= 5.1.0, PECL pdo >= 0.1.0
@@ -14,7 +14,7 @@
 
 
 
-class NoodlePiece {
+class PdoNoodle {
 
 
     /**
@@ -44,13 +44,13 @@ class NoodlePiece {
     /**
      * Get query (CRUD) type and allow access of method
      *
-     * @param $queryType - get query type
+     * @param $statement - get query type
      * @return $this - enables access of methods as method()->method2();
      *
      */
-    public function doLazy($queryType)
+    public function doLazy($statement)
     {
-        $this->statement = func_get_args()[0];
+        $this->statement = $statement;
         return $this;
     }
 
@@ -63,11 +63,11 @@ class NoodlePiece {
      * @return bool|string  - if Query fails, pass reason to error
      *
      */
-    public function where($taskDirective, $valuesToExecute)
+    public function where($taskDirective, $valuesToExecute )
     {
 
         try{
-            $stmt = $this->db->prepare($this->statement. ' WHERE '.$taskDirective);
+            $stmt = $this->db->prepare($this->statement.' WHERE '.$taskDirective);
             $stmt->execute($valuesToExecute);
         }catch (PDOException $e){
             return $this->classError = $e->getMessage();
@@ -128,7 +128,7 @@ class NoodlePiece {
             return $this->db->lastInsertId();
         }
 
-        return $this->classError = 'Query failed at line '. __LINE__;
+        return (!$stmt->rowCount()) ? 'Query failed at line '. __LINE__ : true; 
     }
 
 
