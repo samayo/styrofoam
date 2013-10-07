@@ -1,4 +1,4 @@
-![Y U CODE LIKE THIS](http://i.imm.io/1hvBM.jpeg)
+![Y U CODE LIKE THIS](http://i.imm.io/1hM9x.jpeg)
 
 ##NoodlePiece
 
