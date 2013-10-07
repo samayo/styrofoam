@@ -1,38 +1,44 @@
 ![Y U CODE LIKE THIS](http://i.imm.io/1hM9x.jpeg)
 
-##NoodlePiece
+ 
 
 
-##### vat ze hel iz zis ? 
-
-If you are too noob, or too lazy to write those blocks of PDO statements for each and every one of your
-CRUD applications, then NoodlePiece is your noodle and your best friend. 
-
-I will asume you will write this much, to do a simple SELECT query based on a given parameter. 
-
-      
-      try{
-          $stmt = $conn->prepare('SELECT * FROM users WHERE id = ?');
-          $stmt->execute(array($_POST['id']));
-       } catch(PDOException $e){
-         	 echo $e->getMessage();
-       }
+If you are using PDO to excecute a simple CRUD statements, then I assume you'll be writting at-least this much code, 
+each time you do a simple `SELECT` statement. 
+            
        
-       if($stmt->rowCount()){
-         	return  $stmt->fetchAll(PDO::FETCH_ASSOC); 
+	try{
+		$stmt = $conn->prepare('SELECT * FROM users WHERE id = ?');
+		$stmt->execute(array($_POST['id']));
+	  }catch(PDOException $e){
+		return $e->getMessage();
+	  }
+
+	if($stmt->rowCount()){
+		return  $stmt->fetchAll(PDO::FETCH_ASSOC); 
        }else{
-         	return 'Query failed';
+		return 'Query failed';
        }
+      
 
+Well,  with PdoNoodle, all you have to do to get the same result is... 
 
-Well,  with NoodlePiece, all you have to do to get the same result is... 
-
-      $select = $NoodlePiece->doLazy('SELECT * FROM users')->where('id = ?', $_POST['id']); 
+`$select = $NoodlePiece->doLazy('SELECT * FROM users')->where('id = ?', $_POST['id']);`
 
 that is it. And now, `$select` holds the required data.
 
+=============
+##### UPDATE 
 
+`$update = $NoodlePiece->doLazy('UPDATE car_type')->set('jaguar = ? WHERE id = ?', ['ferrari', 1]);`
 
+##### DELETE 
+
+`$delete = $NoodlePiece->doLazy('DELETE FROM clients')->where('id = ?', array('371'));`
+
+##### INSERT
+
+`$insert = $NoodlePiece->doLazy('INSERT INTO employees (name, job)') ->values('(?,?)', ['simon', 'developer'], true);`
 
 
 
