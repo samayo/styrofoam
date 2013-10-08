@@ -22,7 +22,7 @@ each time you do a simple `SELECT` statement.
 	}
 
 `````
- Well,  with [PdoNoodle->](https://github.com/simon-eQ/PdoNoodle), all you have to do to get the same result is... 
+ Well,  with [PdoNoodle](https://github.com/simon-eQ/PdoNoodle), all you have to do to get the same result is... 
 
 ```` php     
  $select = $NoodlePiece->doLazy('SELECT * FROM users')->where('id = ?', $_POST['id']);
