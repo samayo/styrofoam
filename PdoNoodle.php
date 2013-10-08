@@ -4,13 +4,25 @@
  * PdoNoodle is tiny PDO Wrapper Class, to handle simple PDO-based
  * CRUD statements with one or two lines of coding.
  *
- * PHP 5 >= 5.1.0, PECL pdo >= 0.1.0
+ * Available = PHP 5 >= 5.1.0, PECL pdo >= 0.1.0
  * @author     Simon _eQ <https://github.com/simon-eQ>
  * @copyright  Copyright (c) 2013 Simon _eQ
  * @license    free as in a free hug
  * @version    1.0.0
  *
  */
+ 
+ //    (--./)               *
+ //	   /..)<               ()
+ //	  (o o),\      ___    // 
+ //	   `--.\(\____/   \__//
+ //	        \ `---'  .  )/
+ //		     )       \  < o  
+ //			 | >--( .)  /  o
+ //			 |/_|    / /|   o
+ //			/_|_|   /_|_\  oOo 
+ //        fork me or fork you
+ 
 
 
 
