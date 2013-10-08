@@ -3,7 +3,7 @@
  
 
 
-If you are using pain PDO to excecute simple CRUD statements, then I assume you'll be writting at-least this much, 
+If you are using plain PDO to excecute simple CRUD statements, then I assume you'll be writting at-least this much, 
 to do a simple `SELECT` statement. 
 
 ```` php            
