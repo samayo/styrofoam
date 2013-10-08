@@ -9,8 +9,8 @@ to do a simple `SELECT` statement.
 ```` php            
 
 	try{
-		$stmt = $conn->prepare('SELECT * FROM users WHERE id = ?');
-		$stmt->execute(array($_POST['id']));
+		$stmt = $conn->prepare('SELECT * FROM users WHERE name = ?');
+		$stmt->execute(array($_POST['Simon']));
 	}catch(PDOException $e){
 		return $e->getMessage();
 	}
