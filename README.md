@@ -32,15 +32,15 @@ each time you do a simple `SELECT` statement.
  
  
 =======
-#####for simple UPDATE, DELETE, INSERT check below
+###### How to do simple UPDATE, DELETE, INSERT
 ```` php   
 
 $update = $NoodlePiece->doLazy('UPDATE car_type')->set('jaguar = ? WHERE id = ?', array('ferrari', 1));
 
-$delete = $NoodlePiece->doLazy('DELETE FROM clients')->where('id = ?', array('371'));
+$delete = $NoodlePiece->doLazy('DELETE FROM clients')->where('name = ?', array('Hitler'));
 
-$insert = $NoodlePiece->doLazy('INSERT INTO employees (name, job)')
-                      ->values('(?,?)', array('simon', 'developer'), true);
+$insert = $NoodlePiece->doLazy('INSERT INTO people (name, age)')
+                      ->values('(?,?)', array('Chuck Norris', '700 year old'), true);
 
 
 
