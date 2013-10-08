@@ -40,7 +40,7 @@ $update = $PdoNoodle->doLazy('UPDATE car_color')->set('red = ? WHERE id = ?', ar
 ````
 ```` php 
 $insert = $PdoNoodle->doLazy('INSERT INTO actors (name, age, gender)')
-                    ->values('(?,?)', array('Chuck Norris', '700', 'unknown'), true);
+                    ->values('(?,?,?)', array('Chuck Norris', '700', 'unknown'), true);
 ````
 ###### Note, the INSERT method takes three arguments: 
 
