@@ -21,29 +21,26 @@ each time you do a simple `SELECT` statement.
 		return 'Query failed';
 	}
 
+`````
+ Well,  with [PdoNoodle->](https://github.com/simon-eQ/PdoNoodle), all you have to do to get the same result is... 
 
- Well,  with PdoNoodle, all you have to do to get the same result is... 
-
-
+```` php     
  $select = $NoodlePiece->doLazy('SELECT * FROM users')->where('id = ?', $_POST['id']);
- 
-  // That's it! And now, `$select` holds the required data. 
-
 
 ````
+ That's it! And now, `$select` holds the required data.   
+ 
+ 
+=======
+#####for simple UPDATE, DELETE, INSERT check below
 ```` php   
 
-/*
- * for simple update, delete, insert check below
- */
- 
-
-$update = $NoodlePiece->doLazy('UPDATE car_type')->set('jaguar = ? WHERE id = ?', ['ferrari', 1]);
+$update = $NoodlePiece->doLazy('UPDATE car_type')->set('jaguar = ? WHERE id = ?', array('ferrari', 1));
 
 $delete = $NoodlePiece->doLazy('DELETE FROM clients')->where('id = ?', array('371'));
 
 $insert = $NoodlePiece->doLazy('INSERT INTO employees (name, job)')
-                      ->values('(?,?)', ['simon', 'developer'], true);
+                      ->values('(?,?)', array('simon', 'developer'), true);
 
 
 
