@@ -25,7 +25,7 @@ to do a simple `SELECT` statement.
  Well,  with [PdoNoodle](https://github.com/simon-eQ/PdoNoodle), all you have to do to perform the same query, and  get the same result is by this one line of code:
 
 ```` php     
- $select = $NoodlePiece->doLazy('SELECT * FROM users')->where('id = ?', $_POST['id']);
+ $select = $NoodlePiece->doLazy('SELECT * FROM users')->where('name = ?', $_POST['Simon']);
 
 ````
  That's it! And now, `$select` holds the required data.   
@@ -37,13 +37,13 @@ to do a simple `SELECT` statement.
 
 
 
-$delete = $NoodlePiece->doLazy('DELETE FROM clients')->where('name = ?', array('Hitler'));
+$delete = $NoodlePiece->doLazy('DELETE FROM people')->where('name = ?', array('Hitler'));
 
-$update = $NoodlePiece->doLazy('UPDATE car_type')
-                      ->set('jaguar = ? WHERE id = ?', array('ferrari', 1));
+$update = $NoodlePiece->doLazy('UPDATE car_color')
+                      ->set('red = ? WHERE id = ?', array('blue', 1));
 
 $insert = $NoodlePiece->doLazy('INSERT INTO people (name, age)')
-                      ->values('(?,?)', array('Chuck Norris', '700 year old'), true);
+                      ->values('(?,?)', array('Chuck Norris', '700 years old'), true);
 
 
 
