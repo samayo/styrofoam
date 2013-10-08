@@ -48,8 +48,8 @@ $insert = $PdoNoodle->doLazy('INSERT INTO actors (name, age, gender)')
  $insert = $PdoNoodle->doLazy($query)->values($arg1, $arg2, $bool)
  
  /*
-  * The third additional argument ($bool) should be a boolean, this means 
-  * if you set it to 'true' it will return the lastInsertId() as the response given the query was succesful.
-  * However, If set to 'false', you will only get boolean value, pertaining to the failure / success of the query
-  * 
+  * The third additional argument ($bool) should be a boolean, this means if you set
+  * it to 'true' it will return the lastInsertId() as the response given the query 
+  * was succesful. However, If set to 'false', you will only get boolean value, 
+  * pertaining to the failure / success of the query
   */
