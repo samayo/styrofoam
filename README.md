@@ -1,3 +1,5 @@
+DON'T USE! Library under improvement.
+
 ![Y U CODE LIKE THIS](http://i.imm.io/1hRAR.jpeg)
 
  
