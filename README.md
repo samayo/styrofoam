@@ -33,7 +33,7 @@ to do a simple `SELECT` query.
 ####DELETE, UPDATE, INSERT
 ```` php   
 
-$delete = $db->noodle('DELETE FROM peopl WHERE name = ?', array('Hitler'));
+$delete = $db->noodle('DELETE FROM people WHERE name = ?', array('Hitler'));
 ````
 ```` php 
 $update = $db->noodle('UPDATE car_color SET red = ? WHERE id = ?', array('blue', 1));
