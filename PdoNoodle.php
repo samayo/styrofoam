@@ -16,7 +16,7 @@
 class PdoNoodle extends PDO
 {
 
-    private $queryResults = array();
+
 
     /**
      * Create PDO instance
@@ -66,19 +66,15 @@ class PdoNoodle extends PDO
             // as usually, catch for any errors
             try{
                 foreach(parent::query($query) as $result){
-
                     // inject every result into an array.
-                    $this->queryResults = $result;
+                    $queryResults[] = $result;
                 }
 
             }catch(PDOException $e){
-
                 return $e->getMessage();
-
             }
 
             return $queryResults;
-
             }
 
 

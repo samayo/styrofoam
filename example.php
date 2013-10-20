@@ -2,45 +2,48 @@
 
 
   /*
-   * This demonstrates how to do a simple and basic CRUD with NoodlePiece
-   * First connect to your database
-   */
-  $db = new PDO('mysql:host=localhost; dbname=seoWrapper', 'root', '');  // This is just an example
-  $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 	// enable PDO error mode,
-  
-  /*
    * Include the NoodlePiece class
    */
   require_once 'PdoNoodle.php';
 	
 	/*
-	 * Create a new NoodlePiece instance
+	 * Create a new NoodlePiece instance and do parameterized queries
 	 */
-	$NoodlePiece = new PdoNoodle($db);
+	$db = new PdoNoodle('mysql:dbname=test', 'root', '',
+                     array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 	
 	/*
-	 * How to do a SELECT statement
+	 * How to do a SELECT statement with
 	 */
-	$select = $NoodlePiece->doLazy('SELECT * FROM users')->where('name = ?', ['jimmy']);
+	$select = $db->noodle("SELECT * FROM users WHERE name = ?", array('jimmy'));
 	
 	/*
-	 * How to do a INSERT statement | 3rd parameter = 'true' returnes lastInsertId()
+	 * How to do an INSERT statement
 	 */
-	$insert = $NoodlePiece->doLazy('INSERT INTO employees (name, job)') ->values('(?,?)', ['simon', 'developer'], true);
+	$insert = $db->noodle("INSERT INTO employees (name, job) VALUES (?,?)", array('simon', 'developer'));
 	
 	/*
 	 * How to do a UPDATE statement
 	 */
-	$update = $NoodlePiece->doLazy('UPDATE car_type')->set('jaguar = ? WHERE id = ?', ['ferrari', 1]);
+	$update = $db->noodle("UPDATE car_type SET jaguar = ? WHERE id = ?", array('ferrari', 1));
 	
 	/*
 	 * How to do a DELETE statement
 	 */
-	$delete = $NoodlePiece->doLazy('DELETE FROM clients')->where('id = ?', array('371'));
+	$delete = $db->noodle("DELETE FROM clients WHERE id = ?", array('371'));
 	
 	
 
-	
+	/**
+     *
+     * Simple query, without parameters
+     *
+     */
+
+    $run = $db->noodle("SELECT * FROM students");
+
+
+
 				  				
 	
 	
