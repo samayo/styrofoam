@@ -26,7 +26,7 @@ to do a simple `SELECT` query.
 ```` php     
  $select = $db->noodle('SELECT * FROM users WHERE name = ?', $_POST['Simon']);
 ````
- That's it! And now, `$select` holds the required data.   
+ That's it! And now, `$select` holds the required data, no need to even `try/catch` anything
  
  
 =======
