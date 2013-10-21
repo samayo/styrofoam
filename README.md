@@ -21,12 +21,12 @@ to do a simple `SELECT` query.
 		return 'Query failed';
 	}
 `````
- Well,  with [PdoNoodle](https://github.com/simon-eQ/PdoNoodle), all you have to do to perform the same query, and  get the same result is by this one line of code:
+ Well,  with [PdoNoodle](https://github.com/simon-eQ/PdoNoodle), all you have to do to perform the same query, and  get the same result is:
 
 ```` php     
  $select = $db->noodle('SELECT * FROM users WHERE name = ?', $_POST['Simon']);
 ````
- That's it! And now, `$select` holds the required data, no need to even `try/catch` anything.
+ That's it. One Line! And now, `$select` holds the required data, no need to even `try/catch` anything.
  
  
 =======
