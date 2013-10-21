@@ -26,7 +26,7 @@ to do a simple `SELECT` query.
 ```` php     
  $select = $db->noodle('SELECT * FROM users WHERE name = ?', $_POST['Simon']);
 ````
- That's it! And now, `$select` holds the required data, no need to even `try/catch` anything
+ That's it! And now, `$select` holds the required data, no need to even `try/catch` anything.
  
  
 =======
@@ -46,4 +46,4 @@ $insert = $db->noodle('INSERT INTO actors (name, age, gender) VALUES (?,?,?)', a
 ```` php 
  
 	$db = new PdoNoodle('mysql:dbname=myDb', 'db-user', 'db-pass',
-	array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+		array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
