@@ -3,7 +3,7 @@
  
 =============
 
-###PdoNoodle
+###PdoWrapper
 If you are using plain PDO to excecute simple CRUD statements, then I assume you'll be writting at-least this much, 
 to do a simple `SELECT` query. 
 
@@ -21,10 +21,10 @@ to do a simple `SELECT` query.
 		return 'Query failed';
 	}
 `````
- Well,  with [PdoNoodle](https://github.com/simon-eQ/PdoNoodle), all you have to do to perform the same query, and  get the same result is:
+ Well,  with [PdoWrapper](https://github.com/simon-eQ/PdoWrapper), all you have to do to perform the same query, and  get the same result is:
 
 ```` php     
- $select = $db->noodle('SELECT * FROM users WHERE name = ?', $_POST['Simon']);
+ $select = $db->doSimple('SELECT * FROM users WHERE name = ?', $_POST['Simon']);
 ````
  That's it. One Line! And now, `$select` holds the required data, no need to even `try/catch` anything.
  
@@ -33,17 +33,18 @@ to do a simple `SELECT` query.
 ####DELETE, UPDATE, INSERT
 ```` php   
 
-$delete = $db->noodle('DELETE FROM people WHERE name = ?', array('Hitler'));
+$delete = $db->doSimple('DELETE FROM people WHERE name = ?', array('Hitler'));
 ````
 ```` php 
-$update = $db->noodle('UPDATE car_color SET red = ? WHERE id = ?', array('blue', 1));
+$update = $db->doSimple('UPDATE car_color SET red = ? WHERE id = ?', array('blue', 1));
 ````
 ```` php 
-$insert = $db->noodle('INSERT INTO actors (name, age, gender) VALUES (?,?,?)', array('Chuck Norris', '700', 'N/A'));
+$insert = $db->doSimple('INSERT INTO actors (name, age, gender) VALUES (?,?,?)',
+                        array('Chuck Norris', '700', 'N/A'));
 ````
 ###### How to instantiate the class
 
 ```` php 
  
-	$db = new PdoNoodle('mysql:dbname=myDb', 'db-user', 'db-pass',
+	$db = new PdoWrapper('mysql:dbname=myDb', 'db-user', 'db-pass',
 		array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
