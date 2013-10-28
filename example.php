@@ -15,22 +15,22 @@
 	/*
 	 * How to do a SELECT statement with
 	 */
-	$select = $db->soSimple("SELECT * FROM users WHERE name = ?", array('jimmy'));
+	$select = $db->doSimple("SELECT * FROM users WHERE name = ?", array('jimmy'));
 	
 	/*
 	 * How to do an INSERT statement
 	 */
-	$insert = $db->soSimple("INSERT INTO employees (name, job) VALUES (?,?)", array('simon', 'developer'));
+	$insert = $db->doSimple("INSERT INTO employees (name, job) VALUES (?,?)", array('simon', 'developer'));
 	
 	/*
 	 * How to do a UPDATE statement
 	 */
-	$update = $db->soSimple("UPDATE car_type SET jaguar = ? WHERE id = ?", array('ferrari', 1));
+	$update = $db->doSimple("UPDATE car_type SET jaguar = ? WHERE id = ?", array('ferrari', 1));
 	
 	/*
 	 * How to do a DELETE statement
 	 */
-	$delete = $db->soSimple("DELETE FROM clients WHERE id = ?", array('371'));
+	$delete = $db->doSimple("DELETE FROM clients WHERE id = ?", array('371'));
 	
 	
 
@@ -40,7 +40,7 @@
      *
      */
 
-    $run = $db->soSimple("SELECT * FROM students");
+    $run = $db->doSimple("SELECT * FROM students");
 
 
 
