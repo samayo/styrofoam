@@ -21,19 +21,12 @@ class PdoWrapper extends PDO
 
     /**
      * Create PDO instance
-     * @param $dsn
-     * @param $user
-     * @param $pass
      */
     public function __construct($dsn, $user, $pass){
 
-        /**
-         * Catch errors (if any) from -- new PDO() -- object
-         */
+        
         try{
-            /**
-             * Allow class constructor to fetch parent construct
-             */
+            
             parent::__construct($dsn, $user, $pass);
 
         }catch (PDOException $e){
@@ -65,10 +58,10 @@ class PdoWrapper extends PDO
          */
         if(empty($value)){
 
-            // as usually, catch for any errors
+            
             try{
                 foreach(parent::query($query) as $result){
-                    // inject every result into an array, to avoid doing echo.					
+                    				
                     $queryResults[] = $result;
                 }
 
