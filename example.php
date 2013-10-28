@@ -2,35 +2,35 @@
 
 
   /*
-   * Include the NoodlePiece class
+   * Include the PdoWrapper class
    */
-  require_once 'PdoNoodle.php';
+  require_once 'PdoWrapper.php';
 	
 	/*
-	 * Create a new NoodlePiece instance and do parameterized queries
+	 * Create a new PdoWrapper instance and do parameterized queries
 	 */
-	$db = new PdoNoodle('mysql:dbname=test', 'root', '',
+	$db = new PdoWrapper('mysql:dbname=test', 'root', '',
                      array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 	
 	/*
 	 * How to do a SELECT statement with
 	 */
-	$select = $db->noodle("SELECT * FROM users WHERE name = ?", array('jimmy'));
+	$select = $db->soSimple("SELECT * FROM users WHERE name = ?", array('jimmy'));
 	
 	/*
 	 * How to do an INSERT statement
 	 */
-	$insert = $db->noodle("INSERT INTO employees (name, job) VALUES (?,?)", array('simon', 'developer'));
+	$insert = $db->soSimple("INSERT INTO employees (name, job) VALUES (?,?)", array('simon', 'developer'));
 	
 	/*
 	 * How to do a UPDATE statement
 	 */
-	$update = $db->noodle("UPDATE car_type SET jaguar = ? WHERE id = ?", array('ferrari', 1));
+	$update = $db->soSimple("UPDATE car_type SET jaguar = ? WHERE id = ?", array('ferrari', 1));
 	
 	/*
 	 * How to do a DELETE statement
 	 */
-	$delete = $db->noodle("DELETE FROM clients WHERE id = ?", array('371'));
+	$delete = $db->soSimple("DELETE FROM clients WHERE id = ?", array('371'));
 	
 	
 
@@ -40,7 +40,7 @@
      *
      */
 
-    $run = $db->noodle("SELECT * FROM students");
+    $run = $db->soSimple("SELECT * FROM students");
 
 
 
