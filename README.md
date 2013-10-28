@@ -4,11 +4,11 @@
 =============
 
 ###PdoWrapper
-If you are using plain PDO to excecute simple CRUD statements, then I assume you'll be writting at-least this much, 
-to do a simple `SELECT` query. 
+If you are using plain PDO to excecute simple CRUD statements, then I assume you'll be writting at-least this much,    
+  for a simple `prepare()` method. 
 
 ```` php            
-	try{
+ try{
 		$stmt = $conn->prepare('SELECT * FROM users WHERE name = ?');
 		$stmt->execute(array($_POST['Simon']));
 	}catch(PDOException $e){
@@ -30,7 +30,7 @@ to do a simple `SELECT` query.
  
  
 =======
-####DELETE, UPDATE, INSERT
+#####DELETE, UPDATE, INSERT
 ```` php   
 
 $delete = $db->doSimple('DELETE FROM people WHERE name = ?', array('Hitler'));
@@ -40,7 +40,7 @@ $update = $db->doSimple('UPDATE car_color SET red = ? WHERE id = ?', array('blue
 ````
 ```` php 
 $insert = $db->doSimple('INSERT INTO actors (name, age, gender) VALUES (?,?,?)',
-                        array('Chuck Norris', '700', 'N/A'));
+                             array('Chuck Norris', '700', 'N/A'));
 ````
 ###### How to instantiate the class
 
