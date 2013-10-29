@@ -18,10 +18,7 @@ class PdoWrapper extends PDO
 {
 
 
-
-    /**
-     * Create PDO instance
-     */
+ 
     public function __construct($dsn, $user, $pass){
 
         
@@ -31,11 +28,8 @@ class PdoWrapper extends PDO
 
         }catch (PDOException $e){
 
-            /**
-             * If there is another query after PDO(); multiple errors will
-             * be show, instead we have to echo one, and exit the script.
-             */
-            echo $e->getMessage(); exit; 
+           
+            die($e->getMessage()); 
         }
 
     }
