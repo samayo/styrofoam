@@ -8,7 +8,7 @@
  * Available = PHP 5 >= 5.1.0, PECL pdo >= 0.1.0
  * @author     Simon _eQ <https://github.com/simon-eQ>
  * @copyright  Copyright (c) 2013 Simon _eQ
- * @license    free as in a free hug
+ * @license    free (Public Domain)
  * @version    1.0.0
  *
  */
