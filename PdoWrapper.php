@@ -68,10 +68,7 @@ class PdoWrapper extends PDO
             }
 
 
-        /**
-         * If second argument is not empty, then treat this as
-         * a parameterized query
-         */
+         
         try{
                 $stmt = parent::prepare($query);
                 $stmt->execute($value);
@@ -82,12 +79,7 @@ class PdoWrapper extends PDO
 
             }
 
-
-        /**
-         * If statement has 'SELECT' method in it,
-         * then we only need to return object as the response
-         * otherwise, return bool true for DELETE, UPDATE, INSERT
-         */
+ 
         if(strpos($query, 'SELECT')  < 5){
 		
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
