@@ -5,7 +5,7 @@
 
 ###PdoWrapper
 If you are using plain PDO to excecute simple CRUD statements, then I assume you'll be writting at-least this much,    
-  for a simple `prepare()` method. 
+  for a simple `prepare()`/`query()` method. 
 
 ```` php            
  try{
