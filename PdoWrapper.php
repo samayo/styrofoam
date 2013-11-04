@@ -51,38 +51,22 @@ class PdoWrapper extends PDO
          * a simple query. i.e. non-parameterized query
          */
         if(empty($value)){
-
-            
-            try{
-                foreach(parent::query($query) as $result){
-                    				
-                    $queryResults[] = $result;
-                }
-
-            }catch(PDOException $e){
-               return  $e->getMessage();
-
-            }
-
-            return $queryResults;
-            }
-
-
-         
-        try{
-                $stmt = parent::prepare($query);
-                $stmt->execute($value);
-				
-            }catch (PDOException $e){
-
-               return  $e->getMessage();
-
-            }
+        	
+        	return parent::query($query)
+        
+        }else{
+        	
+	        $stmt = parent::prepare($query);
+	        $stmt->execute($value);
+                
+	if(!(int)$stmt->errorCode()){
+		return $stmt->errorInfo(); 
+	}
 
  
         if(strpos($query, 'SELECT')  < 5){
 		
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        	return $stmt->fetchAll(PDO::FETCH_ASSOC);
 			
         }
 
