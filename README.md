@@ -20,11 +20,7 @@ If you are using plain PDO to excecute simple CRUD statements, then I assume you
 	}else{
 		return 'Query failed';
 	}
-`````
- Well,  with [PdoNoodle](https://github.com/simon-eQ/PdoNoodle), all you have to do to perform the same query, and  get the same result is:
-
-```` php     
- $select = $db->doLazy('SELECT * FROM users WHERE name = ?', $_POST['Simon']);
+    
 ````
  Well,  with [PdoWrapper](https://github.com/simon-eQ/PdoWrapper), all you have to do to perform the same query, and  get the same result is:
 
