@@ -59,17 +59,3 @@ class PdoWrapper extends PDO
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
