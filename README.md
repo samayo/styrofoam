@@ -39,10 +39,6 @@ $update = $db->simple('UPDATE car_color SET red = ? WHERE id = ?', array('blue',
 ````
 
 ```` php 
-$insert = $db->simple('INSERT INTO actors (name, age, gender) VALUES (?,?,?)', array('Chuck Norris', '700', 'N/A'));
-`````
-
-```` php 
 $delete = $db->simple('DELETE FROM people WHERE name = ?', array('Hitler'));
 ````
 
