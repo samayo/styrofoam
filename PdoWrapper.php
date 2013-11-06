@@ -22,7 +22,7 @@ class PdoWrapper extends PDO
     }
 
 
-
+    // use one method for both query/prepare
     public function simple($query, $value = null)
     {
         if(empty($value)){         
