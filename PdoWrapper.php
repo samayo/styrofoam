@@ -11,7 +11,6 @@
 
 class PdoWrapper extends PDO
 {
-
     public function __construct($dsn, $user, $pass)
     {
         try{
@@ -22,7 +21,10 @@ class PdoWrapper extends PDO
     }
 
 
-    // use one method for both query/prepare
+    /*
+     * to simplify things, we can use one method for both
+     * query/prepare methods 
+     */
     public function simple($query, $value = null)
     {
         if(empty($value)){         
@@ -32,9 +34,10 @@ class PdoWrapper extends PDO
 		$stmt = parent::prepare($query); 
 		$stmt->execute($value); 
 		
-		
+		/*
+		 * If query is a select statement, then we only need to retun the object
+		 */
 		if(stripos('SELECT', $query) < 5){
-			
 			if((int)$stmt->errorCode()){
 				return $stmt->errorInfo(); 
 			}else{
@@ -42,7 +45,6 @@ class PdoWrapper extends PDO
 			}
 		
 		}
-		
 		
 		if((int)$stmt->errorCode()){
 			return $stmt->errorInfo(); 
