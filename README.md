@@ -51,3 +51,4 @@ $insert = $db->simple('INSERT INTO actors (name, age, gender) VALUES (?,?,?)',
 
 ```` php 
 	$db = new PdoWrapper('mysql:host=localhost; dbname=db-name', 'db-user', 'db-pass');
+	// Note * Error should be detected as you go along. i.e. No try/catch blocks are needed to catch the exceptions
