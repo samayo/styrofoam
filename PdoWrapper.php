@@ -27,31 +27,32 @@ class PdoWrapper extends PDO
      */
     public function simple($query, $value = null)
     {
-        if(empty($value)){         
+        if(empty($value))
+        {         
             return parent::query($query);
+	}
+		
+	$stmt = parent::prepare($query); 
+	$stmt->execute($value); 
+	
+	/*
+	 * If query is a select statement, then we only need to retun the object
+	 */
+	if(stripos('SELECT', $query) < 5){
+		if((int)$stmt->errorCode()){
+			return $stmt->errorInfo(); 
+		}else{
+			return $stmt->fetchAll(PDO::FETCH_ASSOC);
 		}
-		
-		$stmt = parent::prepare($query); 
-		$stmt->execute($value); 
-		
-		/*
-		 * If query is a select statement, then we only need to retun the object
-		 */
-		if(stripos('SELECT', $query) < 5){
-			if((int)$stmt->errorCode()){
-				return $stmt->errorInfo(); 
-			}else{
-				return $stmt->fetchAll(PDO::FETCH_ASSOC);
-			}
-		
-		}
+	}
 		
 		if((int)$stmt->errorCode()){
 			return $stmt->errorInfo(); 
 		}
 		
+		//if statement contained UPDATE/DELETE/INSERT then 
+		// we should return 'true' based on success of the query
 		return true; 			
-			
     }
 }
 
