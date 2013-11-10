@@ -46,12 +46,12 @@ class PdoWrapper extends PDO
 		}
 	}
 		
-		if((int)$stmt->errorCode()){
-			return $stmt->errorInfo(); 
-		}
-		
-		//if statement contained UPDATE/DELETE/INSERT then 
-		// we should return 'true' based on success of the query
+	if((int)$stmt->errorCode()){
+		return $stmt->errorInfo(); 
+	}
+	
+	//if statement contained UPDATE/DELETE/INSERT then 
+	// we should return 'true' based on success of the query
 		return true; 			
     }
 }
