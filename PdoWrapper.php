@@ -22,14 +22,14 @@ class PdoWrapper extends PDO
 
 
 
-    public function doSimple($query, $value = null, &$error = null)
-    {
-        if($value == null){        
-		if(parent::query($query) == false){
-			$error = 'Query Failed. Use proper PDO + try/catch to find out why :) ';
-			return $this;
+	public function doSimple($query, $value = null, &$error = null)
+	{
+		if($value == null){        
+			if(parent::query($query) == false){
+				$error = 'Query Failed. Use proper PDO + try/catch to find out why :) ';
+				return $this;
+			}
 		}
-	}
 		
 	$stmt = parent::prepare($query); 
 	$stmt->execute($value); 
