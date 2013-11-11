@@ -53,5 +53,3 @@ class PdoWrapper extends PDO
 
 	}
 }
-
-
