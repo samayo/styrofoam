@@ -25,31 +25,31 @@ class PdoWrapper extends PDO
     public function doSimple($query, $value = null, &$error = null)
     {
         if($value == null){        
-			if(parent::query($query) == false){
-				$error = 'Query Failed. Use proper PDO + try/catch to find out why :) ';
-				return $this;
-			}
-		}
-		
-		$stmt = parent::prepare($query); 
-		$stmt->execute($value); 
-		
-		
-		if(stripos('SELECT', $query) < 5){
-			if((int)$stmt->errorCode()){
-				$error = $stmt->errorInfo();
-			}else{
-				return $stmt->fetchAll(PDO::FETCH_ASSOC);
-			}
-		}
-		
-		
-		if((int)$stmt->errorCode()){
-			$error = $stmt->errorInfo();
+		if(parent::query($query) == false){
+			$error = 'Query Failed. Use proper PDO + try/catch to find out why :) ';
 			return $this;
 		}
+	}
 		
+	$stmt = parent::prepare($query); 
+	$stmt->execute($value); 
+		
+		
+	if(stripos('SELECT', $query) < 5){
+		if((int)$stmt->errorCode()){
+			$error = $stmt->errorInfo();
+		}else{
+			return $stmt->fetchAll(PDO::FETCH_ASSOC);
+		}
+	}
+	
+	
+	if((int)$stmt->errorCode()){
+		$error = $stmt->errorInfo();
 		return $this;
+	}
+	
+	return $this;
 			
     }
 }
