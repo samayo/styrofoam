@@ -39,10 +39,6 @@ $update = $db->simple('UPDATE car_color SET red = ? WHERE id = ?', array('blue',
 ````
 
 ```` php 
-$insert = $db->simple('INSERT INTO actors (name, age, gender) VALUES (?,?,?)', array('Chuck Norris', '700', 'N/A'));
-`````
-
-```` php 
 $delete = $db->simple('DELETE FROM people WHERE name = ?', array('Hitler'));
 ````
 
@@ -55,3 +51,4 @@ $insert = $db->simple('INSERT INTO actors (name, age, gender) VALUES (?,?,?)',
 
 ```` php 
 	$db = new PdoWrapper('mysql:host=localhost; dbname=db-name', 'db-user', 'db-pass');
+	// Note * Error should be detected as you go along. i.e. No try/catch blocks are needed to catch the exceptions
