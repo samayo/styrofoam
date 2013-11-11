@@ -5,7 +5,7 @@
  * to handle simple PDO-based CRUD statements with one or two lines of coding.
  * @author     Simon _eQ <https://github.com/simon-eQ>
  * @copyright  Copyright (c) 2013 Simon _eQ
- * @license    Do WTF you want with it.
+ * @license    Public domain. Do anything you want with it.
  *
  */
 
@@ -21,38 +21,36 @@ class PdoWrapper extends PDO
     }
 
 
-    /*
-     * to simplify things, we can use one method for both
-     * query/prepare methods 
-     */
-    public function simple($query, $value = null)
+
+    public function doSimple($query, $value = null, &$error = null)
     {
-        if(empty($value))
-        {         
-            return parent::query($query);
-	}
-		
-	$stmt = parent::prepare($query); 
-	$stmt->execute($value); 
-	
-	/*
-	 * If query is a select statement, then we only need to retun the object
-	 */
-	if(stripos('SELECT', $query) < 5){
-		if((int)$stmt->errorCode()){
-			return $stmt->errorInfo(); 
-		}else{
-			return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if($value == null){        
+			if(parent::query($query) == false){
+				$error = 'Query Failed. Use proper PDO + try/catch to find out why :) ';
+				return $this;
+			}
 		}
-	}
 		
-	if((int)$stmt->errorCode()){
-		return $stmt->errorInfo(); 
-	}
-	
-	//if statement contained UPDATE/DELETE/INSERT then 
-	// we should return 'true' based on success of the query
-		return true; 			
+		$stmt = parent::prepare($query); 
+		$stmt->execute($value); 
+		
+		
+		if(stripos('SELECT', $query) < 5){
+			if((int)$stmt->errorCode()){
+				$error = $stmt->errorInfo();
+			}else{
+				return $stmt->fetchAll(PDO::FETCH_ASSOC);
+			}
+		}
+		
+		
+		if((int)$stmt->errorCode()){
+			$error = $stmt->errorInfo();
+			return $this;
+		}
+		
+		return $this;
+			
     }
 }
 
