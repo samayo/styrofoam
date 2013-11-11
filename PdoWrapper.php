@@ -9,6 +9,7 @@
 *
 */
 
+
 class PdoWrapper extends PDO
 {
 	public function __construct($dsn, $user, $pass)
