@@ -5,13 +5,12 @@
  * to handle simple PDO-based CRUD statements with one or two lines of coding.
  * @author     Simon _eQ <https://github.com/simon-eQ>
  * @copyright  Copyright (c) 2013 Simon _eQ
- * @license    Do WTF you want with it.
+ * @license    Public domain. Do anything you want with it.
  *
  */
 
 class PdoWrapper extends PDO
 {
-
     public function __construct($dsn, $user, $pass)
     {
         try{
@@ -23,10 +22,13 @@ class PdoWrapper extends PDO
 
 
 
-    public function simple($query, $value = null)
+    public function doSimple($query, $value = null, &$error = null)
     {
-        if(empty($value)){         
-            return parent::query($query);
+        if($value == null){        
+			if(parent::query($query) == false){
+				$error = 'Query Failed. Use proper PDO + try/catch to find out why :) ';
+				return $this;
+			}
 		}
 		
 		$stmt = parent::prepare($query); 
@@ -34,21 +36,20 @@ class PdoWrapper extends PDO
 		
 		
 		if(stripos('SELECT', $query) < 5){
-			
 			if((int)$stmt->errorCode()){
-				return $stmt->errorInfo(); 
+				$error = $stmt->errorInfo();
 			}else{
 				return $stmt->fetchAll(PDO::FETCH_ASSOC);
 			}
-		
 		}
 		
 		
 		if((int)$stmt->errorCode()){
-			return $stmt->errorInfo(); 
+			$error = $stmt->errorInfo();
+			return $this;
 		}
 		
-		return true; 			
+		return $this;
 			
     }
 }
