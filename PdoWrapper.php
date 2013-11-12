@@ -12,7 +12,7 @@
 
 class PdoWrapper extends PDO
 {
-    /*
+    /**
      * Catch and exit after any dsn-related error occur with PDO.
      */
     public function __construct($dsn, $user, $pass)
@@ -36,7 +36,7 @@ class PdoWrapper extends PDO
      */
     public function doSimple($query, $value = null, &$error = null)
     {
-        /*
+        /**
          *  if $value is empty/null, then consider this as a query statement
          */
         if($value == null)
@@ -48,7 +48,7 @@ class PdoWrapper extends PDO
             }
         }
 
-        /*
+        /**
          *  if $value is not empty, then use prepare method, and pass the $value to be executed
          */
         $stmt = parent::prepare($query);
