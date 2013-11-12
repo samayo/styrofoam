@@ -4,21 +4,20 @@
 =============
 
 ###PdoWrapper
-If you are using plain PDO to excecute simple CRUD statements, then I assume you'll be writting at-least this much,    
-  for a simple `prepare()`/`query()` method. 
+If you are using a plain PDO to excecute simple CRUD statements, then I assume you'll be writting at-least this much,    
+to perform a simple `prepare()`/`query()` statement. 
 
 ```` php            
 try{
-    $stmt = $conn->prepare('SELECT * FROM users WHERE name = ?');
-    $stmt->execute(array($_POST['Simon']));
-}catch(PDOException $e){
-    return $e->getMessage();
-}
-
-if($stmt->rowCount()){
-    return  $stmt->fetchAll(PDO::FETCH_ASSOC);
-}else{
-    return 'Query failed';
+  $stmt = $conn->prepare('SELECT * FROM users WHERE name = ?');
+  $stmt->execute(array($_POST['Simon']));
+  
+  if($stmt->rowCount()){
+    return $stmt->fetchAll(PDO::FETCH_ASSOC); 
+  }
+  
+  }catch(PDOException $e){
+    return 'Query failed: '.$e->getMessage();
 }
 ````
  Well,  with [PdoWrapper](https://github.com/simon-eQ/PdoWrapper), all you have to do to perform the same query, and  get the same result is:
