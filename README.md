@@ -51,7 +51,6 @@ $delete = $db->doSimple('DELETE FROM companies WHERE name = ?', array('Monsanto'
 
 ```` php 
 $insert = $db->doSimple('INSERT INTO actors (name) VALUES (?)', array('Chuck Norris'), $error);
-
 ````
 ###### How to instantiate the class
 ```` php 
