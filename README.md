@@ -8,19 +8,18 @@ If you are using plain PDO to excecute simple CRUD statements, then I assume you
   for a simple `prepare()`/`query()` method. 
 
 ```` php            
- try{
-		$stmt = $conn->prepare('SELECT * FROM users WHERE name = ?');
-		$stmt->execute(array($_POST['Simon']));
-	}catch(PDOException $e){
-		return $e->getMessage();
-	}
+try{
+    $stmt = $conn->prepare('SELECT * FROM users WHERE name = ?');
+    $stmt->execute(array($_POST['Simon']));
+}catch(PDOException $e){
+    return $e->getMessage();
+}
 
-	if($stmt->rowCount()){
-		return  $stmt->fetchAll(PDO::FETCH_ASSOC); 
-	}else{
-		return 'Query failed';
-	}
-    
+if($stmt->rowCount()){
+    return  $stmt->fetchAll(PDO::FETCH_ASSOC);
+}else{
+    return 'Query failed';
+}
 ````
  Well,  with [PdoWrapper](https://github.com/simon-eQ/PdoWrapper), all you have to do to perform the same query, and  get the same result is:
 
@@ -32,10 +31,10 @@ If you are using plain PDO to excecute simple CRUD statements, then I assume you
  thrown by your statements. as
  ```` php
  if(!$error){
- 		// move to the next level
- 	}else{
- 		echo 'ERROR FOUND: '.$error;
- 	}
+    // Query is OK.
+ }else{
+    echo 'ERROR FOUND: '.$error;
+ }
  ````
 
  
@@ -48,16 +47,14 @@ $update = $db->doSimple('UPDATE car_color SET red = ? WHERE id = ?', array('blue
 ````
 
 ```` php 
-$delete = $db->doSimple('DELETE FROM people WHERE name = ?', array('Hitler'), $error);
+$delete = $db->doSimple('DELETE FROM companies WHERE name = ?', array('Monsanto'), $error);
 ````
 
 ```` php 
-$insert = $db->doSimple('INSERT INTO actors (name, age, gender) VALUES (?,?,?)',
-                             array('Chuck Norris', '700', 'N/A'), $error);
+$insert = $db->doSimple('INSERT INTO actors (name, age) VALUES (?,?)', array('Chuck Norris', '700'), $error);
 
 ````
 ###### How to instantiate the class
-
 ```` php 
 	$db = new PdoWrapper('mysql:host=localhost; dbname=db-name', 'db-user', 'db-pass');
-	// Note * Error should be detected as you go along. i.e. No try/catch blocks are needed to catch the exceptions
+	// Just pass the same number of parameters as you would for the PDO() object
