@@ -25,26 +25,35 @@ If you are using plain PDO to excecute simple CRUD statements, then I assume you
  Well,  with [PdoWrapper](https://github.com/simon-eQ/PdoWrapper), all you have to do to perform the same query, and  get the same result is:
 
 ```` php     
- $select = $db->simple('SELECT * FROM users WHERE name = ?', $_POST['Simon']);
+ $select = $db->doSimple('SELECT * FROM users WHERE name = ?', $_POST['Simon'], $error);
 
 ````
- That's it. One Line! And now, `$select` holds the required data, no need to even `try/catch` anything.
+ That's it. One Line! And now, `$select` holds the required data, no need to even `try/catch` anything instead only check `$error` for any errors
+ thrown by your statements. as
+ ```` php
+ if(!$error){
+ 		// move to the next level
+ 	}else{
+ 		echo 'ERROR FOUND: '.$error;
+ 	}
+ ````
+
  
  
 =======
 #####DELETE, UPDATE, INSERT
 
 ```` php 
-$update = $db->simple('UPDATE car_color SET red = ? WHERE id = ?', array('blue', 1));
+$update = $db->doSimple('UPDATE car_color SET red = ? WHERE id = ?', array('blue', 1), $error);
 ````
 
 ```` php 
-$delete = $db->simple('DELETE FROM people WHERE name = ?', array('Hitler'));
+$delete = $db->doSimple('DELETE FROM people WHERE name = ?', array('Hitler'), $error);
 ````
 
 ```` php 
-$insert = $db->simple('INSERT INTO actors (name, age, gender) VALUES (?,?,?)',
-                             array('Chuck Norris', '700', 'N/A'));
+$insert = $db->doSimple('INSERT INTO actors (name, age, gender) VALUES (?,?,?)',
+                             array('Chuck Norris', '700', 'N/A'), $error);
 
 ````
 ###### How to instantiate the class
