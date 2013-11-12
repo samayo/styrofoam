@@ -13,7 +13,7 @@
 class PdoWrapper extends PDO
 {
     /**
-     * Catch and exit after any dsn-related error occur with PDO.
+     * Catch and exit after any dsn-related error occur From PDO side.
      */
     public function __construct($dsn, $user, $pass)
     {
@@ -27,7 +27,6 @@ class PdoWrapper extends PDO
     /**
      * allow doSimple to take in statements for both prepare/query methods
      *
-     *
      * @param $query  the query statement to pass
      * @param null $value the values to execute 
      * @param null $error assign error for later error checking.
@@ -36,7 +35,7 @@ class PdoWrapper extends PDO
     public function doSimple($query, $value = null, &$error = null)
     {
         /**
-         *  if $value is empty/null, then consider this as a query statement
+         *  if $value is empty/null, then execute as a query() statement
          */
         if($value == null)
         {
@@ -54,15 +53,16 @@ class PdoWrapper extends PDO
 
 
         /**
-         *  if $value is not empty, then use prepare method, and pass the $value to be executed
+         *  if $value is not empty, then use prepare method, by passing $value to be executed
          */
         $stmt = parent::prepare($query);
         $stmt->execute($value);
 
 
         /**
-         * Checking 'SELECT' allows us to know what kind of query was passed
-         * therefore, if it was SELECT we can return the result.
+         * Checking for string 'SELECT' allows us to know what kind of query was passed
+         * therefore, if it was SELECT we can return the result, otherwise only execute
+         * 
          */
         if(stripos('SELECT', $query) < 5)
         {
@@ -86,7 +86,7 @@ class PdoWrapper extends PDO
             return $this;
         }
 
-        return $this;
+            return $this;
 
     }
 
