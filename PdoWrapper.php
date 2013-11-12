@@ -29,10 +29,9 @@ class PdoWrapper extends PDO
      *
      *
      * @param $query  the query statement to pass
-     * @param null $value the values to execute, in the case for prepare() event
+     * @param null $value the values to execute 
      * @param null $error assign error for later error checking.
-     * @return $this|array if query is SELECT we fetch an array of the object statement,
-     *                     if query is not SELECT then, chain the class, or do nothing.
+     * @return $this|array if query is SELECT we fetch an array of the object statement     *              
      */
     public function doSimple($query, $value = null, &$error = null)
     {
@@ -48,11 +47,13 @@ class PdoWrapper extends PDO
             }
         }
 
+
         /**
          *  if $value is not empty, then use prepare method, and pass the $value to be executed
          */
         $stmt = parent::prepare($query);
         $stmt->execute($value);
+
 
         /**
          * Checking 'SELECT' allows us to know what kind of query was passed
@@ -68,9 +69,14 @@ class PdoWrapper extends PDO
                 return $stmt->fetchAll(PDO::FETCH_ASSOC);
             }
         }
+        
 
-
-        if((int) $stmt->errorCode()){
+        /**
+         * This means, the query is either insert, update, delete
+         * therefore, nothing to fetch except the error (if any)
+         */
+        if((int) $stmt->errorCode())
+        {
             $error = $stmt->errorCode();
             return $this;
         }
