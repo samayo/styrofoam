@@ -25,7 +25,6 @@ if($stmt->rowCount()){
 
 ```` php     
  $select = $db->doSimple('SELECT * FROM users WHERE name = ?', $_POST['Simon'], $error);
-
 ````
  That's it. One Line! And now, `$select` holds the required data, no need to even `try/catch` anything instead only check `$error` for any errors
  thrown by your statements. as
@@ -51,7 +50,7 @@ $delete = $db->doSimple('DELETE FROM companies WHERE name = ?', array('Monsanto'
 ````
 
 ```` php 
-$insert = $db->doSimple('INSERT INTO actors (name, age) VALUES (?,?)', array('Chuck Norris', '700'), $error);
+$insert = $db->doSimple('INSERT INTO actors (name) VALUES (?)', array('Chuck Norris'), $error);
 
 ````
 ###### How to instantiate the class
