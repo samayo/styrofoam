@@ -4,8 +4,7 @@
 =============
 
 ###PdoWrapper
-If you are using a plain PDO to excecute simple CRUD statements, then I assume you'll be writting at-least this much,    
-to perform a simple `prepare()`/`query()` statement. 
+If you are using a plain PDO to excecute simple CRUD statements, then I assume you'll be writting at-least this much, to perform a simple `prepare()`/`query()` statement. 
 
 ```` php            
 try{
@@ -55,3 +54,5 @@ $insert = $db->doSimple('INSERT INTO actors (name) VALUES (?)', array('Chuck Nor
 ```` php 
 	$db = new PdoWrapper('mysql:host=localhost; dbname=db-name', 'db-user', 'db-pass');
 	// Just pass the same number of parameters as you would for the PDO() object
+	
+	// You can also chain methods for sequential queries.
