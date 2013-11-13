@@ -1,7 +1,7 @@
 <?php
 
 /**
- * PdoWrapper as the name suggests, is  a tiny PDO Wrapper Class,
+ * PdoWrapper: A small class to wrap PDO's prepare/query methods and the constructor
  * to handle simple PDO-based CRUD statements with one or two lines of coding.
  * @author     Simon _eQ <https://github.com/simon-eQ>
  * @copyright  Copyright (c) 2013 Simon _eQ
