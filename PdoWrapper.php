@@ -46,7 +46,7 @@ class PdoWrapper extends PDO
             }
             
             /**
-             * if the erro no errors, return the PDO statement itself. 
+             * if the error no errors, return the PDO statement itself.
              */
             return parent::query($query);
         }
@@ -71,7 +71,7 @@ class PdoWrapper extends PDO
                 $error = $stmt->errorInfo();
                 return $this;
             }else{
-                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+                return $stmt;
             }
         }
         
