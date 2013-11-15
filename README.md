@@ -56,7 +56,7 @@ $insert = $db->doSimple('INSERT INTO actors (name) VALUES (?)', array('Chuck Nor
 	// Just pass the same number of parameters as you would for the PDO() object
 ````
 
-#### method chaining
+#### Method chaining
 This is not very important, only an extra feature. But, let's check what method chaining looks like first: 
 ```` php
 $releaseTheKraken =  $db
