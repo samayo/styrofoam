@@ -22,15 +22,15 @@ try{
  Well,  with [PdoWrapper](https://github.com/simon-eQ/PdoWrapper), all you have to do to perform the same query, and  get the same result is by doing:
 
 ```` php     
- $select = $db->doSimple('SELECT * FROM users WHERE name = ?', $_POST['Simon'], $error);
+ $select = $db->doSimple('SELECT * FROM users WHERE name = ?', $_POST['Simon'], $e);
 ````
- That's it. One Line! And now, `$select` holds the required data, no need to even `try/catch` anything instead only check `$error` for any errors
- thrown by your statements. as
+That's it. And now, `$select` holds the required data, no need to even `try/catch` anything, instead only check `$e` for any errors
+thrown by your statement, like: 
  ```` php
- if(!$error){
+ if(!$e){
     // Query is OK.
  }else{
-    echo 'ERROR FOUND: '.$error;
+    echo 'PDO ERROR: '.$e;
  }
  ````
 
