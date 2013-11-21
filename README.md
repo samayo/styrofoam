@@ -59,7 +59,7 @@ $insert = $db->doSimple('INSERT INTO actors (name) VALUES (?)', array('Chuck Nor
 #### Method chaining
 This is not very important, only an extra feature. But, let's check what method chaining looks like first: 
 ```` php
-$releaseTheKraken =  $db
+ $releaseTheKraken =  $db
 	->doSimple("UPDATE table SET row = ? WHERE id = ?", array($val, $id), $error)
 	->doSimple("INSERT INTO users (name) VALUE (?)", array('foo'), $error)
 	->doSimple("DELETE FROM example WHERE name = ?", array('foo'), $error); 
