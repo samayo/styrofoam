@@ -42,7 +42,7 @@ class PdoWrapper extends PDO
             if(parent::query($query) == false)
             {
                 $error = 'Query failed. Use proper PDO with try/catch to find out why :)';
-                return $this;
+                
             }
             
             /**
@@ -69,10 +69,12 @@ class PdoWrapper extends PDO
             if((int)$stmt->errorCode())
             {
                 $error = $stmt->errorInfo();
-                return $this;
+                
             }else{
                 return $stmt;
             }
+			
+			return $this;
         }
         
 
@@ -80,10 +82,9 @@ class PdoWrapper extends PDO
          * This means, the query is either insert, update, delete
          * therefore, nothing to fetch except the error (if any)
          */
-        if((int) $stmt->errorCode())
+        if((int)$stmt->errorCode())
         {
-            $error = $stmt->errorCode();
-            return $this;
+            $error = $stmt->errorCode();            
         }
 
             return $this;
@@ -91,3 +92,12 @@ class PdoWrapper extends PDO
     }
 
 }
+
+
+
+
+
+
+
+
+
