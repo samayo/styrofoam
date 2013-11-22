@@ -74,7 +74,7 @@ class PdoWrapper extends PDO
                 return $stmt;
             }
 			
-			return $this;
+		return $this;
         }
         
 
