@@ -70,7 +70,9 @@ class PdoWrapper extends PDO
             {
                 $error = $stmt->errorInfo();
                 
-            }else{
+            }
+            else
+            {
                 return $stmt;
             }
 			
@@ -92,12 +94,3 @@ class PdoWrapper extends PDO
     }
 
 }
-
-
-
-
-
-
-
-
-
