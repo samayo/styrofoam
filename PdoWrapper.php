@@ -41,8 +41,7 @@ class PdoWrapper extends PDO
         {
             if(parent::query($query) == false)
             {
-                $error = 'Query failed. Use proper PDO with try/catch to find out why :)';
-                
+                $error = 'Query failed. Use proper PDO with try/catch to find out why :(';
             }
             
             /**
