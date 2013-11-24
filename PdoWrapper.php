@@ -65,30 +65,30 @@ class PdoWrapper extends PDO
          */
         if(stripos('SELECT', $query) < 5)
         {
-            if((int)$stmt->errorCode())
+        	
+            $error = (int)$stmt->errorCode();
+            
+            if(!$error)
             {
-                $error = $stmt->errorInfo();
+                return $stmt;
                 
             }
             else
             {
-                return $stmt;
+                return $this;
             }
-			
-		return $this;
         }
         
 
         /**
-         * This means, the query is either insert, update, delete
-         * therefore, nothing to fetch except the error (if any)
+         * remeber errorCode gives '0000' if there are no errors, so
+         * casting it to int will give '0' meaning there is not error. 
+         * but if there is an error, then $error will be initialized
          */
-        if((int)$stmt->errorCode())
-        {
-            $error = $stmt->errorCode();            
-        }
+         
+         $error = (int)$stmt->errorCode();
 
-            return $this;
+         return $this;
 
     }
 
