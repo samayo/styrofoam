@@ -1,10 +1,8 @@
 <?php
 
 /**
- * PdoWrapper: A small class to wrap PDO's prepare/query methods and the constructor
- * to handle simple PDO-based CRUD statements with one or two lines of coding.
+ * PdoWrapper: A small class to wrap PDO's prepare/query methods
  * @author     Simon _eQ <https://github.com/simon-eQ>
- * @copyright  Copyright (c) 2013 Simon _eQ
  * @license    Public domain. Do anything you want with it.
  *
  */
@@ -13,7 +11,7 @@
 class PdoWrapper extends PDO
 {
     /**
-     * Catch and exit after any dsn-related error occur From PDO side.
+     * for some reason, I can't catch the exception here, so if an error occurs just exit. 
      */
     public function __construct($dsn, $user, $pass)
     {
@@ -25,17 +23,17 @@ class PdoWrapper extends PDO
     }
 
     /**
-     * allow doSimple to take in statements for both prepare/query methods
+     * this will take two arguments (+ 1 reference) for both query/prepare() methods
      *
-     * @param $query  the query statement to pass
-     * @param null $value the values to execute 
+     * @param $query  Build your statement query here
+     * @param null $value pass the values as array for the execute() method
      * @param null $error assign error for later error checking.
-     * @return $this|array if query is SELECT we fetch an array of the object statement     *              
+     * @return $this|array if query was a SELECT statement, then we'll get the $stmt object
      */
     public function doSimple($query, $value = null, &$error = null)
     {
         /**
-         *  if $value is empty/null, then execute as a query() statement
+         *  if $value is empty/null, then do a query() statement
          */
         if($value == null)
         {
@@ -44,15 +42,14 @@ class PdoWrapper extends PDO
                 $error = 'Query failed. Use proper PDO with try/catch to find out why :(';
             }
             
-            /**
-             * if the error no errors, return the PDO statement itself.
-             */
+           
+             // if there aren't any errors, return the PDO statement itself.
             return parent::query($query);
         }
 
 
         /**
-         *  if $value is not empty, then use prepare method, by passing $value to be executed
+         *  if $value is not empty, then use prepare method, by passing the $value to be executed
          */
         $stmt = parent::prepare($query);
         $stmt->execute($value);
@@ -60,12 +57,11 @@ class PdoWrapper extends PDO
 
         /**
          * Checking for string 'SELECT' allows us to know what kind of query was passed
-         * therefore, if it was SELECT we can return the result, otherwise only execute
+         * therefore, if it was SELECT we can return the $stmt object
          * 
          */
         if(stripos('SELECT', $query) < 5)
         {
-        	
             $error = (int)$stmt->errorCode();
             
             if(!$error)
@@ -81,9 +77,9 @@ class PdoWrapper extends PDO
         
 
         /**
-         * remeber errorCode gives '0000' if there are no errors, so
-         * casting it to int will give '0' meaning there is not error. 
-         * but if there is an error, then $error will be initialized
+         * remeber errorCode gives '0000' if there are no errors, so only
+         * casting it to int will give '0' or meaning there wasn't any error. 
+         * othewise $error will be initialized. 
          */
          
          $error = (int)$stmt->errorCode();
