@@ -43,7 +43,9 @@ class PdoWrapper extends PDO
             }
             
            
-             // if there aren't any errors, return the PDO statement itself.
+             /**
+              * if there aren't any errors, return the PDO statement itself.
+              */
             return parent::query($query);
         }
 
@@ -56,9 +58,9 @@ class PdoWrapper extends PDO
 
 
         /**
+         * 
          * Checking for string 'SELECT' allows us to know what kind of query was passed
          * therefore, if it was SELECT we can return the $stmt object
-         * 
          */
         if(stripos('SELECT', $query) < 5)
         {
@@ -67,7 +69,6 @@ class PdoWrapper extends PDO
             if(!$error)
             {
                 return $stmt;
-                
             }
             else
             {
