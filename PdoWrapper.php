@@ -64,16 +64,7 @@ class PdoWrapper extends PDO
          */
         if(stripos('SELECT', $query) < 5)
         {
-            $error = (int)$stmt->errorCode();
-            
-            if(!$error)
-            {
-                return $stmt;
-            }
-            else
-            {
-                return $this;
-            }
+            return (int)$stmt->errorCode() ? $this : $stmt; 
         }
         
 
