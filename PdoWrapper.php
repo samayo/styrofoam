@@ -41,7 +41,6 @@ class PdoWrapper extends PDO
             {
                 $error = 'Query failed. Use proper PDO with try/catch to find out why :(';
             }
-            
            
              /**
               * if there aren't any errors, return the PDO statement itself.
@@ -76,7 +75,6 @@ class PdoWrapper extends PDO
          */
          
          $error = (int)$stmt->errorCode();
-
          return $this;
 
     }
