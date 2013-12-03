@@ -56,24 +56,4 @@ $insert = $db->doSimple('INSERT INTO actors (name) VALUES (?)', array('Chuck Nor
 	// Just pass the same number of parameters as you would for the PDO() object
 ````
 
-#### Method chaining
-This is not very important, only an extra feature. But, let's check what method chaining looks like first: 
-```` php
- $releaseTheKraken =  $db
-	->doSimple("UPDATE table SET row = ? WHERE id = ?", array($val, $id), $error)
-	->doSimple("INSERT INTO users (name) VALUE (?)", array('foo'), $error)
-	->doSimple("DELETE FROM example WHERE name = ?", array('foo'), $error); 
-	
-	/* If you wanted to execute something like that, it is possible to do so since each query, except for SELECT 
-	 * returns the class object. And, if you want to apply it, then you are likely to want each query to get
-	 * executed after the success of the one before it, meaning:
-	 * only execute the following query, if the previous one was a succes. 
-	 * So,I suggest you add `if($error){return $error;}` as shown below, to halt the process, in the case of an error. 
-     */
-	public function doSimple($query, $value = null, &$error = null)
-	{
-	   //this will prevent the script from continuing if, there was an error with the previous one. 
-	    if($error){
-	       return $error; 
-	    }
-````     
+at last, every method is made to return the class object, so you can apply method-chaining to execute queries in sequence. 
