@@ -33,20 +33,15 @@ thrown by your statement, like:
     echo 'PDO ERROR: '.$e;
  }
  ````
-
- 
- 
 =======
 #####DELETE, UPDATE, INSERT
 
 ```` php 
 $update = $db->doSimple('UPDATE car_color SET red = ? WHERE id = ?', array('blue', 1), $error);
 ````
-
 ```` php 
 $delete = $db->doSimple('DELETE FROM companies WHERE name = ?', array('Monsanto'), $error);
 ````
-
 ```` php 
 $insert = $db->doSimple('INSERT INTO actors (name) VALUES (?)', array('Chuck Norris'), $error);
 ````
@@ -56,4 +51,9 @@ $insert = $db->doSimple('INSERT INTO actors (name) VALUES (?)', array('Chuck Nor
 	// Just pass the same number of parameters as you would for the PDO() object
 ````
 
+=======
+#####Simple Query
+```` php 
+$update = $db->doSimple('UPDATE * FROM names'), null, $error);
+```` 
 at last, every method is made to return the class object, so you can apply method-chaining to execute queries in sequence. 
