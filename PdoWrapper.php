@@ -13,10 +13,10 @@ class PdoWrapper extends PDO
     /**
      * for some reason, I can't catch the exception here, so if an error occurs just exit. 
      */
-    public function __construct($dsn, $user, $pass)
+    public function __construct($dsn, $user, $pass, $options = null)
     {
         try{
-            parent::__construct($dsn, $user, $pass);
+            parent::__construct($dsn, $user, $pass, $options = null);
         }catch(PDOException $e){
             die($e->getMessage());
         }
