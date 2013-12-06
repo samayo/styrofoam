@@ -23,6 +23,7 @@ try{
 
 ```` php     
  $select = $db->doSimple('SELECT * FROM users WHERE name = ?', $_POST['Simon'], $e);
+ $row = $select->fetch(); 
 ````
 That's it. And now, `$select` holds the required data, no need to even `try/catch` anything, instead only check `$e` for any errors
 thrown by your statement, like: 
@@ -47,7 +48,9 @@ $insert = $db->doSimple('INSERT INTO actors (name) VALUES (?)', array('Chuck Nor
 ````
 ###### How to instantiate the class
 ```` php 
-	$db = new PdoWrapper('mysql:host=localhost; dbname=db-name', 'db-user', 'db-pass');
+	$db = new PdoWrapper('mysql:host=localhost; dbname=db-name', 'db-user', 'db-pass'
+		array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC)
+	);
 	// Just pass the same number of parameters as you would for the PDO() object
 ````
 
