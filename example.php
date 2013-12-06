@@ -4,7 +4,9 @@
 	require_once 'PdoWrapper.php';
 
 	// Create a new PdoWrapper instance and do parameterized queries
-	$db = new PdoWrapper('mysql:host=localhost; dbname=mydb', 'root', '');
+	$db = new PdoWrapper('mysql:host=localhost; dbname=mydb', 'root', 'pass', 
+		array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC)
+	);
 
 
 
