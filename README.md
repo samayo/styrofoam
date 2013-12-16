@@ -4,7 +4,7 @@
 =============
 
 ###PdoWrapper
-If you are using a plain PDO to excecute simple CRUD statements, then I assume you'll be writting at-least this much, to perform a simple `prepare()` statement. 
+If you use a plain PDO to excecute simple CRUD statements, then I assume you'll be writting at-least this much, to perform a simple `prepare()` statement. 
 
 ```` php            
 try{
