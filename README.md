@@ -22,7 +22,7 @@ try{
  Well,  with [PdoWrapper](https://github.com/simon-eQ/PdoWrapper), all you have to do to perform the same query, and  get the same result is by doing:
 
 ```` php     
- $select = $db->doSimple('SELECT * FROM users WHERE name = ?', $_POST['Simon'], $e);
+ $select = $db->doSimple('SELECT * FROM users WHERE name = ?', $_POST['username'], $e);
  $row = $select->fetch(); 
 ````
 That's it. And now, `$select` holds the required data, no need to even `try/catch` anything, instead only check `$e` for any errors
