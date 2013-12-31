@@ -18,7 +18,7 @@ class PdoWrapper extends PDO
         try{
             parent::__construct($dsn, $user, $pass, $options = null);
         }catch(PDOException $e){
-            return  ($e->getMessage());
+            die  ($e->getMessage());
         }
     }
 
