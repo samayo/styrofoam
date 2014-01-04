@@ -35,7 +35,7 @@ class PdoWrapper extends PDO
         /**
          *  if $value is empty/null, then do a query() statement
          */
-        if($value == null)
+        if(!$value)
         {
             if(parent::query($query) == false)
             {
