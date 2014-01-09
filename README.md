@@ -22,7 +22,7 @@ try{
  Well,  with [PdoWrapper](https://github.com/simon-eQ/PdoWrapper), all you have to do to perform the same query, and  get the same result is by doing:
 
 ```` php     
- $select = $db->doSimple('SELECT * FROM users WHERE name = ?', $_POST['username'], $e);
+ $select = $db->wrap('SELECT * FROM users WHERE name = ?', $_POST['username'], $e);
  $row = $select->fetch(); 
 ````
 That's it. And now, `$select` holds the required data, no need to even `try/catch` anything, instead only check `$e` for any errors
@@ -38,13 +38,13 @@ thrown by your statement, like:
 #####DELETE, UPDATE, INSERT
 
 ```` php 
-$update = $db->doSimple('UPDATE car_color SET red = ? WHERE id = ?', array('blue', 1), $error);
+$update = $db->wrap('UPDATE car_color SET red = ? WHERE id = ?', array('blue', 1), $error);
 ````
 ```` php 
-$delete = $db->doSimple('DELETE FROM companies WHERE name = ?', array('Monsanto'), $error);
+$delete = $db->wrap('DELETE FROM companies WHERE name = ?', array('Monsanto'), $error);
 ````
 ```` php 
-$insert = $db->doSimple('INSERT INTO actors (name) VALUES (?)', array('Chuck Norris'), $error);
+$insert = $db->wrap('INSERT INTO actors (name) VALUES (?)', array('Chuck Norris'), $error);
 ````
 ###### How to instantiate the class
 ```` php 
@@ -57,7 +57,7 @@ $insert = $db->doSimple('INSERT INTO actors (name) VALUES (?)', array('Chuck Nor
 =======
 #####Simple Query
 ```` php 
-$update = $db->doSimple('UPDATE * FROM names'), null, $error);
+$update = $db->wrap('UPDATE * FROM names'), null, $error);
 ```` 
 at last, every method is made to return the class object, so you can apply method-chaining to execute queries in sequence. 
 ![FORK](http://i.imm.io/1m2WW.png)
