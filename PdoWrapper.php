@@ -28,7 +28,7 @@ class PdoWrapper extends PDO
      * @param null $error assign error for later error checking.
      * @return $this|array if query was a SELECT statement, then we'll get the $stmt object
      */
-    public function doSimple($query, $value = null, &$error = null)
+    public function wrap($query, $value = null, &$error = null)
     {
         /**
          *  if $value is empty/null, then do a query() statement
