@@ -59,5 +59,7 @@ $insert = $db->wrap('INSERT INTO actors (name) VALUES (?)', array('Chuck Norris'
 ```` php 
 $update = $db->wrap('UPDATE * FROM names'), null, $error);
 ```` 
-at last, every method is made to return the class object, so you can apply method-chaining to execute queries in sequence. 
+at last, every method is made to return the class object, so you can apply method-chaining to execute queries in sequence.    
+
+===========
 ![FORK](http://i.imm.io/1m2WW.png)
