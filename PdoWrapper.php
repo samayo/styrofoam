@@ -1,12 +1,10 @@
 <?php
-
 /**
  * PdoWrapper: A small class to wrap PDO's prepare/query methods
  * @author     Simon _eQ <https://github.com/simon-eQ>
  * @license    Public domain. Do anything you want with it.
  *
  */
-
 
 class PdoWrapper extends PDO
 {
@@ -21,7 +19,7 @@ class PdoWrapper extends PDO
     }
 
     /**
-     * this will take two arguments (+ 1 reference) for both query/prepare() methods
+     * takes three arguments. 
      *
      * @param $query  Build your statement query here
      * @param null $value pass the values as array for the execute() method
@@ -31,13 +29,13 @@ class PdoWrapper extends PDO
     public function wrap($query, $value = null, &$error = null)
     {
         /**
-         *  if $value is empty/null, then do a query() statement
+         *  if $value is empty/null, then do a query() statement only
          */
         if(!$value)
         {
             if(parent::query($query) == false)
             {
-                $error = 'Query failed. Use proper PDO with try/catch to find out why :(';
+                $error = 'Query failed. Use propery try/catch method to capture the error';
             }
            
              /**
