@@ -25,7 +25,7 @@ try{
  $select = $db->wrap('SELECT * FROM users WHERE name = ?', $_POST['username'], $e);
  $row = $select->fetch(); 
 ````
-That's it. And now, `$select` holds the required data, no need to even `try/catch` anything, instead only check `$e` for any errors
+That's it. And now, `$row` holds the required data, no need to even `try/catch` anything, instead only check `$e` for any errors
 thrown by your statement, like: 
  ```` php
  if(!$e){
@@ -38,13 +38,13 @@ thrown by your statement, like:
 #####DELETE, UPDATE, INSERT
 
 ```` php 
-$update = $db->wrap('UPDATE car_color SET red = ? WHERE id = ?', array('blue', 1), $error);
+$update = $db->wrap('UPDATE car_color SET red = ? WHERE id = ?', array('blue', 1), $e);
 ````
 ```` php 
-$delete = $db->wrap('DELETE FROM companies WHERE name = ?', array('Monsanto'), $error);
+$delete = $db->wrap('DELETE FROM companies WHERE name = ?', array('Monsanto'), $e);
 ````
 ```` php 
-$insert = $db->wrap('INSERT INTO actors (name) VALUES (?)', array('Chuck Norris'), $error);
+$insert = $db->wrap('INSERT INTO actors (name) VALUES (?)', array('Chuck Norris'), $e);
 ````
 ###### How to instantiate the class
 ```` php 
@@ -57,7 +57,7 @@ $insert = $db->wrap('INSERT INTO actors (name) VALUES (?)', array('Chuck Norris'
 =======
 #####Simple Query
 ```` php 
-$update = $db->wrap('UPDATE * FROM names'), null, $error);
+$update = $db->wrap('UPDATE * FROM names'), null, $e);
 ```` 
 at last, every method is made to return the class object, so you can apply method-chaining to execute queries in sequence.    
 
