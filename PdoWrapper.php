@@ -8,7 +8,6 @@
 
 class PdoWrapper extends PDO
 {
-
     public function __construct($dsn, $user, $pass, $options = null)
     {
         try{
@@ -19,7 +18,7 @@ class PdoWrapper extends PDO
     }
 
     /**
-     * takes three arguments. 
+     * Main query builder method. accepts the statement!
      *
      * @param $query  Build your statement query here
      * @param null $value pass the values as array for the execute() method
