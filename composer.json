@@ -1,6 +1,6 @@
 {
 
-"name": "pdo-wrapper",
+"name": "pdowrapper/pdowrapper",
 "type":"library",
 "description":"pdo based simple database query maker",
 "require":{
