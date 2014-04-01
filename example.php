@@ -1,14 +1,16 @@
 <?php
 
 
-	require_once 'PdoWrapper.php';
+	require_once 'src/PdoWrapper.php';
 
-	// Create a new PdoWrapper instance and do parameterized queries
-	$db = new PdoWrapper('mysql:host=localhost; dbname=mydb', 'root', 'pass', 
-		array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC)
+		// as usuall start by creating the wrapper
+	$db = new PdoWrapper('mysql:host=localhost; dbname=mydb; charset=UTF8', 'root', 'pass', 
+			array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC)
 	);
 
 
+
+	$e = null; // this is to catch possible any occuring errors.
 
 	//How to perform simple CRUD statements.
 	$select = $db->wrap("SELECT * FROM girls WHERE name = ?", array('Megan Fox'), $error);

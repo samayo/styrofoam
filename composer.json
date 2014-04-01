@@ -1,9 +1,0 @@
-{
-
-"name": "pdowrapper/pdowrapper",
-"type":"library",
-"description":"pdo based simple database query maker",
-"require":{
- "php": ">=5.3.0"
-}
-}
