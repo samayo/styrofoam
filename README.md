@@ -22,6 +22,7 @@ try{
  Well,  with [PdoWrapper](https://github.com/simon-eQ/PdoWrapper), all you have to do to perform the same query, and  get the same result is by doing:
 
 ```` php     
+ $e = null; 
  $select = $db->wrap('SELECT * FROM users WHERE name = ?', $_POST['username'], $e);
  $row = $select->fetch(); 
 ````
@@ -48,8 +49,8 @@ $insert = $db->wrap('INSERT INTO actors (name) VALUES (?)', array('Chuck Norris'
 ````
 ###### How to instantiate the class
 ```` php 
-	$db = new PdoWrapper('mysql:host=localhost; dbname=db-name', 'db-user', 'db-pass'
-		array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC)
+	$db = new PdoWrapper("mysql:host=localhost; dbname=db-name; charset=UTF8", "db-user", "db-pass"
+		  array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC)
 	);
 	// Just pass the same number of parameters as you would for the PDO() object
 ````
