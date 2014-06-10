@@ -1,11 +1,14 @@
-<?php
-/**
- * PdoWrapper: A small class to wrap PDO's prepare/query methods
- * @author     Simon _eQ <https://github.com/simon-eQ>
- * @license    Public domain. Do anything you want with it.
- *
- */
+<?php 
 
+/**
+ * A pdo-wrapper class
+ * 
+ * @category PDOWrapper
+ * @license  Free / Luke 3:11
+ * @version  1.0.0
+ * @link     https://github.com/bivoc/pdowrapper/
+ * @author   bivoc. ~ The force is strong with this one.
+ */
 class PdoWrapper extends PDO
 {
     public function __construct($dsn, $user, $pass, $options = null)
@@ -16,6 +19,15 @@ class PdoWrapper extends PDO
             die($e->getMessage());
         }
     }
+
+
+    public static function wrap($query, array $value = []){
+        if(!empty($value)){
+            
+        }
+    }
+
+
 
     /**
      * Main query builder method. accepts the statement!
