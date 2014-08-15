@@ -1,18 +1,18 @@
 {
-    "name": "bivoc/pdowrapper",
+    "name": "bivoc/myquery",
     "description": "a small pdo-wrapper class",
     "keywords": ["pdo", "wrapper"],
-    "homepage": "http://github.com/bivoc/pdowrapper",
+    "homepage": "http://github.com/bivoc/myquery",
     "license": "public domain",
     "authors": [
         {
-            "name": "Simon_eQ",
+            "name": "bivoc",
         }
     ],
     "require": {
         "php": ">=5.3.0"
     },
     "autoload": {
-            "files":"src/pdoWrapper.php"
+            "files":"src/MyQuery.php"
     }
 }

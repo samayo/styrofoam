@@ -1,66 +1,37 @@
 ![Y U CODE LIKE THIS](http://i.imm.io/1hRAR.jpeg)
-
- 
 =============
 
-###PdoWrapper
-If you use a plain PDO to excecute simple CRUD statements, then I assume you'll be writting at-least this much, to perform a simple `prepare()` statement. 
+###My Query
+If you write a plain PDO script for simple CRUD statements, then you'll have to write at-least this much, to run a select statement.
 
-```` php            
+```` php      
+$options = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC)
+$db = new PDO('mysql:host=localhost; dbname=***;  charset=utf8', 'root', 'test', $options);
+
 try{
-  $stmt = $conn->prepare('SELECT * FROM users WHERE name = ?');
-  $stmt->execute(array($_POST['Simon']));
-  
-  if($stmt->rowCount()){
-    return $stmt->fetchAll(PDO::FETCH_ASSOC); 
-  }
-  
-  }catch(PDOException $e){
-    return 'Query failed: '.$e->getMessage();
+	$stmt = $db->prepare('SELECT * FROM users WHERE id = ?');
+	$stmt->execute(array('145');
+}catch(PDOException $e){
+	echo $e->getMessage(); 
 }
+	return $stmt->fetchAll(); 
 ````
- Well,  with [PdoWrapper](https://github.com/simon-eQ/PdoWrapper), all you have to do to perform the same query, and  get the same result is by doing:
+With [MyQuery](https://github.com/bivoc/MyQuery), it's a lot simpler, specially if you have multiple statements. 
+```` php
+require 'MyQuery.php'
+$options = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC)
+$db = new MyQuery('mysql:host=localhost; dbname=***;  charset=utf8', 'root', 'test', $options);
+````
+As you can see, once you require & instanciate the class, doing simple CRUD statments could not be easier. 
+```` php
+$select = $db->select('SELECT * FROM users WHERE id = ?', [145]);
+$insert = $db->insert('INSERT INTO users (lastname) VALUES (?)', ['robin']);
+$delete = $db->delete('DELETE FROM users WHERE id = ?', [456]);
+$update = $db->update('UPDATE cars SET color = ? WHERE model = ?', ['blue', 'Toyota']);
+````
+One more convenient thing is that, `$select` would return the data, while `$insert` returns the `lastInsertId()`,
+and both `$delete`, `$update` will return true/false based on whether an actual delete/update was performed. All of this, using a simple wrapper under 1kb.
 
-```` php     
- $e = null; 
- $select = $db->wrap('SELECT * FROM users WHERE name = ?', $_POST['username'], $e);
- $row = $select->fetch(); 
-````
-That's it. And now, `$row` holds the required data, no need to even `try/catch` anything, instead only check `$e` for any errors
-thrown by your statement, like: 
- ```` php
- if(!$e){
-    // Query is OK.
- }else{
-    echo 'PDO ERROR: '.$e;
- }
- ````
-=======
-#####DELETE, UPDATE, INSERT
-
-```` php 
-$update = $db->wrap('UPDATE car_color SET red = ? WHERE id = ?', array('blue', 1), $e);
-````
-```` php 
-$delete = $db->wrap('DELETE FROM companies WHERE name = ?', array('Monsanto'), $e);
-````
-```` php 
-$insert = $db->wrap('INSERT INTO actors (name) VALUES (?)', array('Chuck Norris'), $e);
-````
-###### How to instantiate the class
-```` php 
-	$db = new PdoWrapper("mysql:host=localhost; dbname=db-name; charset=UTF8", "db-user", "db-pass"
-		  array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC)
-	);
-	// Just pass the same number of parameters as you would for the PDO() object
-````
-
-=======
-#####Simple Query
-```` php 
-$update = $db->wrap('UPDATE * FROM names'), null, $e);
-```` 
-at last, every method is made to return the class object, so you can apply method-chaining to execute queries in sequence.    
 
 ===========
 ![FORK](http://i.imm.io/1m2WW.png)
