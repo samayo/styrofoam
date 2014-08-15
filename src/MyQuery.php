@@ -11,10 +11,12 @@
  */
 class MyQuery extends \PDO
 {
+
     public  function __call($func, $args)
     {
-        if(!in_array($func, array("select", "update", "delete", "insert"))){
-            throw new Exception($func." is unknown mysql statement");
+        if(!in_array($func, array("select", "update", "delete", "insert")))
+        {
+            throw new Exception($func." is not a valid mysql statement");
         }
         
         if(count($args) == 2){
@@ -27,15 +29,15 @@ class MyQuery extends \PDO
         if((int)$stmt->errorCode()){
             throw new Exception($stmt->errorInfo()[2]);
         }
-         
-        $$func = true; 
-
-        if($select){
+        
+        if($func == 'select')
+        {
             return $stmt->fetchAll();
         }
 
-        if($insert){
-            return $stmt->dbh->lastInsertId();
+        if($func == 'insert')
+        {
+            return parent::lastInsertId();
         }
 
         return $stmt->rowCount();
