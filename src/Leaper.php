@@ -1,15 +1,17 @@
 <?php 
-
 /**
- * A tiny PDO-Wrapper class
- * 
+ * A tiny pdo-wrapper class.
+ *
  * @category MyQuery
  * @license  Luke 3:11
  * @version  1.0.0
- * @link     https://github.com/bivoc/MyQuery
- * @author   bivoc. ~ The force is strong with this one.
+ * @link     https://github.com/samayo/MyQuery
+ * @license  Luke 3:11 ( Free )
  */
-class MyQuery extends \PDO
+
+class LeaperException extends \Exception {}
+
+class Leaper extends \PDO
 {
 
     public  function __call($func, $args)
