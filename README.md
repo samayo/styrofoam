@@ -13,7 +13,7 @@ $db = new Leaper('mysql:host=localhost; dbname=***;  charset=utf8', 'root', 'tes
 		PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC 
 		]);
 ````
-Once the create the object, simple CRUD statements could not get easier. 
+Once you create the object, simple CRUD statements could not get easier. 
 ```` php
 // select * from users where id = '145'
 $select = $db->select('SELECT * FROM users WHERE id = ?', [145]);
