@@ -1,23 +1,21 @@
 <?php 
 /**
- * A tiny pdo-wrapper class.
+ * LEAPER,
+ * a tiny pdo-wrapper class.
  *
- * @category MyQuery
+ * @category leaper
  * @license  Luke 3:11
  * @version  1.0.0
- * @link     https://github.com/samayo/MyQuery
+ * @link     https://github.com/samayo/Leaper
  * @license  Luke 3:11 ( Free )
  */
-
 class LeaperException extends \Exception {}
 
 class Leaper extends \PDO
 {
-
     public  function __call($func, $args)
     {
-        if(!in_array($func, array("select", "update", "delete", "insert")))
-        {
+        if(!in_array($func, array("select", "update", "delete", "insert"))){
             throw new Exception($func." is not a valid mysql statement");
         }
         
@@ -32,16 +30,14 @@ class Leaper extends \PDO
             throw new Exception($stmt->errorInfo()[2]);
         }
         
-        if($func == 'select')
-        {
+        if($func == 'select'){
             return $stmt->fetchAll();
         }
 
-        if($func == 'insert')
-        {
+        if($func == 'insert'){
             return parent::lastInsertId();
         }
-
+        
         return $stmt->rowCount();
     }
 }
