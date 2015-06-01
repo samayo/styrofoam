@@ -1,9 +1,9 @@
 {
-    "name": "samayo/leaper",
+    "name": "samayo/styrofoam",
     "description": "a tiny small pdo wrapper class",
-    "keywords": ["pdo", "wrapper"],
-    "homepage": "http://github.com/samayo/leaper",
-    "license": "public domain",
+    "keywords": ["pdo", "wrapper", "orm"],
+    "homepage": "http://github.com/samayo/styrofoam",
+    "license": "MIT",
     "authors": [
         {
             "name": "samayo"
@@ -13,6 +13,6 @@
         "php": ">=5.3.0"
     },
     "autoload": {
-            "files":"src/leaper.php"
+            "files":"src/styrofoam.php"
     }
 }
