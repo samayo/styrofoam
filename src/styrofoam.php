@@ -1,22 +1,21 @@
 <?php 
 /**
- * LEAPER,
- * a tiny pdo-wrapper class.
+ * Styrofoam,
+ * A small pdo-wrapper class.
  *
- * @category leaper
- * @license  Luke 3:11
+ * @category Styrofoam
  * @version  1.0.0
- * @link     https://github.com/samayo/Leaper
- * @license  Luke 3:11 ( Free )
+ * @link     https://github.com/samayo/styrofoam
+ * @license  MIT
  */
-class LeaperException extends \Exception {}
+namespace Styrofoam; 
 
-class Leaper extends \PDO
+class Database extends \PDO
 {
     public  function __call($func, $args)
     {
         if(!in_array($func, array("select", "update", "delete", "insert"))){
-            throw new Exception($func." is not a valid mysql statement");
+            throw new \Exception($func." is not a valid mysql statement");
         }
         
         if(count($args) == 2){
@@ -27,7 +26,7 @@ class Leaper extends \PDO
         }
 
         if((int)$stmt->errorCode()){
-            throw new Exception($stmt->errorInfo()[2]);
+            throw new \Exception($stmt->errorInfo()[2]);
         }
         
         if($func == 'select'){
