@@ -7,24 +7,34 @@ A small PDO Wrapper class, trying to evolve to a small ORM.
 ```` php
 require 'path/to/styrofoam.php'
 
-// pass the same type info as to the `PDO()` object. 
-$db = new Database\Styrofoam('mysql:host=localhost; dbname=***;  charset=utf8', 'xx', 'xx', [
-		PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-		PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC 
-	]);
+/**
+ * Styrofoam accepts the PDO parameters
+ */
+$db = new Database\Styrofoam(
+    'mysql:host=localhost; dbname=***;  charset=utf8', 'xx', 'xx', [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC 
+    ]);
 
-## Now, simply start cruding .. 
 
-// returns the select content
+ /**
+  * @return array - the select content
+  */
 $select = $db->select('SELECT * FROM users WHERE id = ?', [145]);
 
-// returns value of lastInsertId(); 
+ /**
+  * @var int|bool - the lastInsertId(); 
+  */
 $insert = $db->insert('INSERT INTO users (lastname) VALUES (?)', ['robin']);
 
-// returns bool
+ /**
+  * @var bool - success status
+  */
 $delete = $db->delete('DELETE FROM users WHERE id = ?', [456]);
 
-// return bool
+ /**
+  * @var bool = success status
+  */
 $update = $db->update('UPDATE cars SET color = ? WHERE model = ?', ['blue', 'Toyota']);
 ````
 
