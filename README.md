@@ -10,7 +10,7 @@ require 'path/to/styrofoam.php'
 /**
  * Styrofoam accepts the PDO parameters
  */
-$db = new Database\Styrofoam(
+$db = new Styrofoam\Database(
     'mysql:host=localhost; dbname=***;  charset=utf8', 'xx', 'xx', [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC 
