@@ -31,25 +31,23 @@ $db = new Db(
 
 Examples
 -----
-```php 
-##### SELECT
+ 
+#### SELECT
 returns result in `$select` as array format
 ```php
 $select = $db->select('SELECT * FROM users WHERE id = ?', [145]);
 ```
-
-##### INSERT
+#### INSERT
 returns `$insert` with the value of `lastInsertId()` on success
 ```php
 $insert = $db->insert('INSERT INTO users (lastname) VALUES (?)', ['robin']);
 ```
-
-##### DELETE
+#### DELETE
 returns `$delete` with boolean value on success
 ```php
 $delete = $db->delete('DELETE FROM users WHERE id = ?', [456]);
 ```
-
+#### UPDATE
 returns `$update` with boolean value on success
 ```php
 $update = $db->update('UPDATE cars SET color = ? WHERE model = ?', ['blue', 'Toyota']);
