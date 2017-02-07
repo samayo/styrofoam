@@ -1,42 +1,59 @@
-## STYROFOAM
-A small PDO Wrapper class, trying to evolve to a small ORM. 
+## Styrofoam
+
+A tiny PDO wrapper class, for simple CRUD operation. 
 
 
 Install 
 -----
+Using composer
+````bash
+$ composer require samayo/styrofoam:2.0.*
+````
 Using git
 ```bash
 $ git clone https://github.com/samayo/styrofoam.git
 ```
-Using composer
-````bash
-$ php composer.phar require samayo/styrofoam:2.0.*
-````
-
 
 Usage
 -----
 
 ```php
-require 'path/to/styrofoam.php'
+require 'path/to/styrofoam.php';
 
-$db = new Styrofoam\Database(
-    'mysql:host=localhost; dbname=***;  charset=utf8', 'xx', 'xx', [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC 
-    ]);
+use Styrofoam\Database as Db; 
+
+$db = new Db(
+  'mysql:host=localhost; dbname=db-name;  charset=utf8', 'db-user', 'db-pass', [
+      PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+      PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC 
+  ]);
 ```
-#### CRUD
+
+Examples
+-----
 ```php 
-// returns result in array
+##### SELECT
+returns result in `$select` as array format
+```php
 $select = $db->select('SELECT * FROM users WHERE id = ?', [145]);
-// returns lastInsertId() on success
+```
+
+##### INSERT
+returns `$insert` with the value of `lastInsertId()` on success
+```php
 $insert = $db->insert('INSERT INTO users (lastname) VALUES (?)', ['robin']);
-// returns bool
+```
+
+##### DELETE
+returns `$delete` with boolean value on success
+```php
 $delete = $db->delete('DELETE FROM users WHERE id = ?', [456]);
-// returns bool
+```
+
+returns `$update` with boolean value on success
+```php
 $update = $db->update('UPDATE cars SET color = ? WHERE model = ?', ['blue', 'Toyota']);
-````
+```
 
 #### License  
  MIT
