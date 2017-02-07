@@ -1,7 +1,7 @@
 {
     "name": "samayo/styrofoam",
-    "description": "a tiny small pdo wrapper class",
-    "keywords": ["pdo", "wrapper", "orm"],
+    "description": "A tiny pdo wrapper class",
+    "keywords": ["pdo", "wrapper", "database", "crud"],
     "homepage": "http://github.com/samayo/styrofoam",
     "license": "MIT",
     "authors": [
