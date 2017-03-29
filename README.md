@@ -7,7 +7,7 @@ Install
 -----
 Using composer
 ````bash
-$ composer require samayo/styrofoam:2.0.*
+$ composer require samayo/styrofoam:1.0.*
 ````
 Using git
 ```bash
