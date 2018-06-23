@@ -2,7 +2,6 @@
 
 A tiny PDO wrapper class, for simple CRUD operation. 
 
-
 Install 
 -----
 Using composer
@@ -20,38 +19,32 @@ Usage
 ```php
 require 'path/to/styrofoam.php';
 
-use Styrofoam\Database as Db; 
-
-$db = new Db(
+$db = new Styrofoam\Database(
   'mysql:host=localhost; dbname=db-name;  charset=utf8', 'db-user', 'db-pass', [
-      PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-      PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC 
-  ]);
+  PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+  PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC 
+]);
 ```
 
 Examples
 -----
  
 #### SELECT
-returns result in `$select` as array format
 ```php
 $select = $db->select('SELECT * FROM users WHERE id = ?', [145]);
 ```
 #### INSERT
-returns `$insert` with the value of `lastInsertId()` on success
 ```php
+// returns value lastInsertId() on success
 $insert = $db->insert('INSERT INTO users (lastname) VALUES (?)', ['robin']);
 ```
 #### DELETE
-returns `$delete` with boolean value on success
 ```php
+// returns $delete as boolean
 $delete = $db->delete('DELETE FROM users WHERE id = ?', [456]);
 ```
 #### UPDATE
-returns `$update` with boolean value on success
 ```php
+// returns $update as boolean
 $update = $db->update('UPDATE cars SET color = ? WHERE model = ?', ['blue', 'Toyota']);
 ```
-
-#### License  
- MIT
