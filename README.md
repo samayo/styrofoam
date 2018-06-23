@@ -31,6 +31,7 @@ Examples
  
 #### SELECT
 ```php
+// returns $select with value of query
 $select = $db->select('SELECT * FROM users WHERE id = ?', [145]);
 ```
 #### INSERT
